@@ -20,9 +20,10 @@
   /* — Semantic (light) — */
   --bg-page:     var(--ap-offwhite);
   --bg-surface:  var(--ap-white);
-  --field-bg:    #f4f7fb;
-  --field-bg-2:  #eef3f9;
+  --field-bg:    #f7f7f7;   /* measured off Svea: neutral grey, not bluish */
+  --field-bg-2:  #f0f0f0;
   --ink:         #0f123c;
+  --ink-serif:   #4d4d4d;   /* measured off Svea heading/paragraph colour */
   --ink-muted:   #565e82;
   --ink-faint:   #8a90ac;
   --line:        rgba(15, 18, 60, 0.10);
@@ -87,13 +88,13 @@ body {
 /* ---- The card --------------------------------------------------------- */
 .mf-card {
   width: 100%;
-  max-width: 114rem;
+  max-width: 122rem;                 /* measured: Svea card ~1220px */
   background: var(--bg-surface);
   border-radius: var(--r-lg);
   box-shadow: var(--shadow-3);
   overflow: hidden;
   display: grid;
-  grid-template-columns: 45fr 55fr;
+  grid-template-columns: 1fr 1fr;    /* measured: Svea ~50/50 */
   opacity: 0;
   transform: translateY(1.4rem);
   animation: mf-fade var(--slow) var(--ease-out) forwards;
@@ -132,12 +133,12 @@ body {
 
 .mf-photo__body { position: relative; display: flex; flex-direction: column; gap: var(--s-5); }
 
-.mf-photo__quote {
+.mf-photo__quote {                     /* measured: Svea 28px, weight 500 */
   margin: 0;
   font-family: var(--font-serif);
-  font-size: clamp(2.2rem, 1.7rem + 1.7vw, 3.1rem);
-  font-weight: var(--w-reg);
-  line-height: 1.24;
+  font-size: clamp(2.2rem, 1.9rem + 1vw, 2.8rem);
+  font-weight: var(--w-med);
+  line-height: 1.35;
   color: #fff;
   text-wrap: balance;
   text-shadow: 0 2px 14px rgba(0,0,0,0.4);
@@ -171,32 +172,33 @@ body {
 }
 
 .mf-head { text-align: center; margin-bottom: var(--s-6); }
-.mf-head__h {
+.mf-head__h {                          /* measured: Svea 20→24px, weight 500, #4d4d4d */
   font-family: var(--font-serif);
-  font-size: clamp(2.6rem, 2.1rem + 1.6vw, 3.6rem);
+  font-size: clamp(2.1rem, 1.9rem + 0.5vw, 2.5rem);
   font-weight: var(--w-med);
-  line-height: 1.12; letter-spacing: -0.005em;
-  color: var(--ink); margin: 0; text-wrap: balance;
+  line-height: 1.35; letter-spacing: 0;
+  color: var(--ink-serif); margin: 0; text-wrap: balance;
 }
-.mf-head__p {
+.mf-head__p {                          /* measured: Svea 16→18px, weight 200, #4d4d4d */
   font-family: var(--font-serif);
-  font-size: clamp(1.6rem, 1.5rem + 0.4vw, 1.9rem);
-  color: var(--ink-muted); line-height: 1.45;
-  margin: var(--s-4) auto 0; max-width: 42rem; text-wrap: balance;
+  font-size: clamp(1.6rem, 1.5rem + 0.3vw, 1.8rem);
+  font-weight: var(--w-light);
+  color: var(--ink-serif); line-height: 1.4;
+  margin: var(--s-4) auto 0; max-width: 40rem; text-wrap: balance;
 }
 
 /* form grid */
 .mf-form { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); }
-.mf-field { display: flex; flex-direction: column; gap: 0.7rem; }
+.mf-field { display: flex; flex-direction: column; gap: 0.8rem; }
 .mf-field--full { grid-column: 1 / -1; }
 
-.mf-label { font-size: var(--fs-sm); font-weight: var(--w-med); color: var(--ink); }
+.mf-label { font-size: 1.4rem; font-weight: var(--w-med); color: var(--ink); }   /* measured: Svea 14px / 500 */
 .mf-label .opt { color: var(--ink-faint); font-weight: var(--w-reg); }
 
-.mf-input, .mf-select, .mf-textarea {
+.mf-input, .mf-select, .mf-textarea {                    /* measured: Svea #f7f7f7, 2px border, 16x18 padding, 8px radius */
   width: 100%; font-family: var(--font); font-size: 1.6rem; color: var(--ink);
-  background: var(--field-bg); border: 1.5px solid transparent; border-radius: var(--r-sm);
-  padding: 1.3rem 1.4rem; line-height: 1.2;
+  background: var(--field-bg); border: 2px solid transparent; border-radius: var(--r-sm);
+  padding: 1.6rem 1.8rem; line-height: 1.2;
   transition: border-color var(--fast) var(--ease), background var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
   -webkit-appearance: none; appearance: none;
 }
@@ -285,7 +287,7 @@ body {
 .mf-submit {
   position: relative; width: 100%; display: inline-flex; align-items: center; justify-content: center;
   gap: 1rem; font-family: var(--font); font-size: 1.8rem; font-weight: var(--w-semi);
-  color: #fff; border: 0; border-radius: var(--r-pill); padding: 1.8rem 2.4rem; cursor: pointer;
+  color: #fff; border: 0; border-radius: var(--r-pill); padding: 1.7rem 3.2rem; cursor: pointer;
   background: linear-gradient(100deg, #009e88 0%, #00b597 52%, #17c6a0 100%);
   box-shadow: var(--shadow-teal);
   transition: transform var(--fast) var(--ease), filter var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
