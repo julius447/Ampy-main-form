@@ -82,19 +82,20 @@ body {
 .mf-section {
   display: flex;
   justify-content: center;
-  padding: clamp(3.2rem, 2rem + 5vw, 7rem) clamp(1.6rem, 1rem + 3vw, 4rem);
+  padding: clamp(3.2rem, 2rem + 5vw, 7rem) clamp(1.6rem, 1rem + 3vw, 3rem);   /* 30px gutters → card hits 1220px like Svea */
 }
 
 /* ---- The card --------------------------------------------------------- */
 .mf-card {
   width: 100%;
-  max-width: 122rem;                 /* measured: Svea card ~1220px */
+  max-width: 122rem;                 /* measured: Svea card = 1220px */
+  min-height: 82.8rem;               /* measured: Svea card = 828px */
   background: var(--bg-surface);
-  border-radius: var(--r-lg);
+  border-radius: 1.5rem;             /* measured: Svea radius = 15px */
   box-shadow: var(--shadow-3);
   overflow: hidden;
   display: grid;
-  grid-template-columns: 1fr 1fr;    /* measured: Svea ~50/50 */
+  grid-template-columns: 1fr 1fr;    /* measured: Svea = 50/50 */
   opacity: 0;
   transform: translateY(1.4rem);
   animation: mf-fade var(--slow) var(--ease-out) forwards;
@@ -128,8 +129,7 @@ body {
 }
 
 .mf-photo__logo { position: relative; display: flex; align-items: center; gap: 0.9rem; }
-.mf-photo__logo svg { width: 2.8rem; height: 2.8rem; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.4)); }
-.mf-photo__word { font-size: 2.4rem; font-weight: var(--w-bold); color: #fff; letter-spacing: -0.01em; text-shadow: 0 1px 6px rgba(0,0,0,0.35); }
+.mf-photo__logoimg { height: 2.7rem; width: auto; display: block; filter: drop-shadow(0 1px 4px rgba(0,0,0,0.45)); }
 
 .mf-photo__body { position: relative; display: flex; flex-direction: column; gap: var(--s-5); }
 
@@ -167,8 +167,8 @@ body {
    RIGHT — the form pane (white)
    ============================================================================ */
 .mf-form-pane {
-  padding: clamp(3.2rem, 2rem + 3vw, 5.6rem) clamp(2.6rem, 1.8rem + 2.5vw, 5rem);
-  display: flex; flex-direction: column;
+  padding: clamp(3.2rem, 2rem + 3vw, 5rem) clamp(2.6rem, 1.8rem + 2.5vw, 5rem);
+  display: flex; flex-direction: column; justify-content: center;   /* vertically centered in the 828px card, like Svea */
 }
 
 .mf-head { text-align: center; margin-bottom: var(--s-6); }

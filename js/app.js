@@ -1,11 +1,9 @@
 /* ============================================================================
-   Ampy — Main form redesign · interaction layer
-   - live per-field validation (blur), Ampy-rost inline messages
-   - address autocomplete (MOCK — swap for a real API in production, see README)
-   - interest chips (multi-select)
-   - in-place success (no redirect) + consent-gated conversion event
-   - webhook mapping to n8nflows.ampy.se/webhook/Kontakt
-   Vanilla JS, no deps. Scoped to #mfForm.
+   Ampy — Main form (Svea-format clone, Ampy content) · interaction layer
+   Fields: Förnamn, Efternamn, E-post, Telefonnummer, Adress (autocomplete +
+   manual fallback), Meddelande. Live per-field validation, in-place success,
+   consent-gated events, webhook → n8nflows.ampy.se/webhook/Kontakt.
+   Vanilla JS, scoped to #mfForm.
    ============================================================================ */
 (function () {
   "use strict";
@@ -15,19 +13,20 @@
   if (!form) return;
 
   var els = {
-    namn:    document.getElementById("mf_namn"),
-    email:   document.getElementById("mf_email"),
-    telefon: document.getElementById("mf_telefon"),
-    addrSok: document.getElementById("mf_adress_sok"),
-    addrList: document.getElementById("mfAddrList"),
+    forenamn:  document.getElementById("mf_forenamn"),
+    efternamn: document.getElementById("mf_efternamn"),
+    email:     document.getElementById("mf_email"),
+    telefon:   document.getElementById("mf_telefon"),
+    addrSok:   document.getElementById("mf_adress_sok"),
+    addrList:  document.getElementById("mfAddrList"),
     addrConfirmed: document.getElementById("mfAddrConfirmed"),
     manualBtn: document.getElementById("mfAddrManual"),
     manualFields: document.getElementById("mfManualFields"),
-    adress:  document.getElementById("mf_adress"),
+    adress:    document.getElementById("mf_adress"),
     postnummer: document.getElementById("mf_postnummer"),
-    ort:     document.getElementById("mf_ort"),
-    submit:  document.getElementById("mfSubmit"),
-    success: document.getElementById("mfSuccess")
+    ort:       document.getElementById("mf_ort"),
+    submit:    document.getElementById("mfSubmit"),
+    success:   document.getElementById("mfSuccess")
   };
 
   /* ---- validators -------------------------------------------------------- */
@@ -38,7 +37,8 @@
     input.classList.toggle("is-invalid", valid === false);
     if (f) f.classList.toggle("has-error", valid === false);
   }
-  function vName()  { var ok = els.namn.value.trim().length >= 2; setState(els.namn, ok); return ok; }
+  function vForenamn()  { var ok = els.forenamn.value.trim().length >= 2; setState(els.forenamn, ok); return ok; }
+  function vEfternamn() { var ok = els.efternamn.value.trim().length >= 2; setState(els.efternamn, ok); return ok; }
   function vPhone() {
     var v = els.telefon.value.trim().replace(/[\s\-()]/g, "");
     var ok = /^(\+?\d{7,15})$/.test(v);
@@ -46,12 +46,10 @@
   }
   function vEmail() {
     var v = els.email.value.trim();
-    if (v === "") { setState(els.email, null); return true; }      // optional
     var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
     setState(els.email, ok); return ok;
   }
   function vAddress() {
-    // valid if a suggestion was confirmed, OR manual postnummer looks like a SE zip
     var confirmed = form.dataset.addressConfirmed === "1";
     var pn = (els.postnummer.value || "").replace(/\s/g, "");
     var manualOk = els.manualFields.classList.contains("show") && /^\d{5}$/.test(pn);
@@ -62,26 +60,15 @@
     return ok;
   }
 
-  els.namn.addEventListener("blur", vName);
+  els.forenamn.addEventListener("blur", vForenamn);
+  els.efternamn.addEventListener("blur", vEfternamn);
   els.telefon.addEventListener("blur", vPhone);
   els.email.addEventListener("blur", vEmail);
-  [els.namn, els.telefon, els.email].forEach(function (i) {
-    i.addEventListener("input", function () { if (i.classList.contains("is-invalid")) { if (i === els.namn) vName(); else if (i === els.telefon) vPhone(); else vEmail(); } });
+  [[els.forenamn, vForenamn], [els.efternamn, vEfternamn], [els.telefon, vPhone], [els.email, vEmail]].forEach(function (pair) {
+    pair[0].addEventListener("input", function () { if (pair[0].classList.contains("is-invalid")) pair[1](); });
   });
 
-  /* ---- interest chips ---------------------------------------------------- */
-  form.querySelectorAll(".mf-chip input").forEach(function (cb) {
-    cb.addEventListener("change", function () {
-      cb.closest(".mf-chip").classList.toggle("active", cb.checked);
-      trackStart();
-    });
-  });
-
-  /* ---- address autocomplete (MOCK) --------------------------------------
-     Prototype only: a small curated Stockholm-region address set so the UX is
-     real and testable. In production replace `mockSearch()` with a call to the
-     chosen address API (see README → "Adress-API"). The rest of this block
-     (list render, keyboard, select→postnr fill) is API-agnostic and reusable. */
+  /* ---- address autocomplete (MOCK) -------------------------------------- */
   var MOCK = [
     { street: "Ankdammsgatan 33", zip: "171 67", city: "Solna" },
     { street: "Sveavägen 44", zip: "111 34", city: "Stockholm" },
@@ -150,7 +137,7 @@
   });
   els.addrSok.addEventListener("blur", function () {
     form.dataset.addressTouched = "1";
-    setTimeout(function () { closeList(); vAddress(); }, 150); // allow click
+    setTimeout(function () { closeList(); vAddress(); }, 150);
   });
   els.addrSok.addEventListener("keydown", function (e) {
     if (!els.addrList.classList.contains("show")) return;
@@ -166,7 +153,6 @@
     if (btn) { e.preventDefault(); selectAddr(current[+btn.dataset.i]); }
   });
 
-  /* manual entry toggle */
   els.manualBtn.addEventListener("click", function () {
     var open = els.manualFields.classList.toggle("show");
     els.manualBtn.textContent = open ? "Använd adressök" : "Ange adress manuellt";
@@ -179,7 +165,6 @@
   /* ---- conversion tracking (consent-gated) ------------------------------- */
   var started = false;
   function consentOk() {
-    // Consent Mode: fire only if marketing consent granted (or Cookiebot absent in proto)
     return (typeof window.Cookiebot === "undefined") ||
            (window.Cookiebot.consent && window.Cookiebot.consent.marketing);
   }
@@ -192,30 +177,26 @@
   function trackLead(payload) {
     if (!consentOk()) return;
     try {
-      if (typeof window.gtag === "function") window.gtag("event", "generate_lead", { form_id: "kontakt", kundtyp: payload.kundtyp, intresse: payload.intresse });
+      if (typeof window.gtag === "function") window.gtag("event", "generate_lead", { form_id: "kontakt" });
       if (typeof window.fbq === "function") window.fbq("track", "Lead", {}, { eventID: payload.event_id });
     } catch (e) {}
-    (window.dataLayer = window.dataLayer || []).push({ event: "generate_lead", form_id: "kontakt", kundtyp: payload.kundtyp });
+    (window.dataLayer = window.dataLayer || []).push({ event: "generate_lead", form_id: "kontakt" });
   }
-  [els.namn, els.email, els.telefon].forEach(function (i) {
+  [els.forenamn, els.efternamn, els.email, els.telefon].forEach(function (i) {
     i.addEventListener("focus", trackStart, { once: true });
   });
 
   /* ---- submit ------------------------------------------------------------ */
   function collect() {
-    var intresse = Array.prototype.map.call(
-      form.querySelectorAll('input[name="intresse"]:checked'), function (c) { return c.value; }
-    );
     return {
       form_type: "Kontakt",
-      kundtyp: form.querySelector("#mf_kundtyp").value,
-      namn: els.namn.value.trim(),
+      forenamn: els.forenamn.value.trim(),
+      efternamn: els.efternamn.value.trim(),
       email: els.email.value.trim(),
       telefon: els.telefon.value.trim(),
       adress: els.adress.value.trim() || els.addrSok.value.trim(),
       postnummer: els.postnummer.value.trim(),
       ort: els.ort.value.trim(),
-      intresse: intresse,
       meddelande: form.querySelector("#mf_meddelande").value.trim(),
       sida: window.location.href,
       event_id: "kontakt_" + Date.now() + "_" + Math.random().toString(36).slice(2, 9)
@@ -225,8 +206,8 @@
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     form.dataset.addressTouched = "1";
-    var okName = vName(), okPhone = vPhone(), okEmail = vEmail(), okAddr = vAddress();
-    if (!(okName && okPhone && okEmail && okAddr)) {
+    var ok = [vForenamn(), vEfternamn(), vEmail(), vPhone(), vAddress()].every(Boolean);
+    if (!ok) {
       var firstErr = form.querySelector(".is-invalid, .has-error .mf-input");
       if (firstErr) firstErr.focus();
       return;
@@ -243,11 +224,7 @@
     })
     .then(function (r) { if (!r.ok) throw new Error("bad response"); return r; })
     .then(function () { showSuccess(payload); })
-    .catch(function () {
-      // Prototype: webhook may be CORS-blocked from a static preview → still show success
-      // so the flow can be reviewed. Production posts server-side (see README).
-      showSuccess(payload);
-    });
+    .catch(function () { showSuccess(payload); });  // prototype: show success even if CORS-blocked
   });
 
   function showSuccess(payload) {
