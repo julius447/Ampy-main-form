@@ -1,18 +1,19 @@
 /* ============================================================================
-   Ampy — Main form redesign (offert / "Få en kostnadsfri rådgivning")
-   Trust-panel LEFT (navy aurora) · form RIGHT (white) — one white glas-kort.
-   Bound to the canonical Ampy tokens (ampy-design-system/reference/tokens.css).
-   Prototype: rem base = 62.5% (1rem = 10px). Production self-hosts Outfit.
+   Ampy — Main form redesign (offert / "Få ett förslag som passar dig")
+   Composition faithful to Svea Solar's fri-offert (photo LEFT / form RIGHT,
+   serif hero type, gradient pill) — but Ampy's OWN photo, copy, Google rating
+   and tokens. Layout is cloned; nothing of Svea's content/brand is reproduced.
+   Prototype: rem base = 62.5% (1rem = 10px). Production self-hosts fonts.
    ============================================================================ */
 
 :root {
   /* — Brand core — */
   --ap-navy:        #090b32;
   --ap-navy-2:      #0d1145;
-  --ap-teal:        #00a991;   /* the single accent */
+  --ap-teal:        #00a991;
   --ap-teal-bright: #1cc4af;
   --ap-green:       #39c281;
-  --ap-mint:        #55ff9a;   /* gradient cap only, never solid text */
+  --ap-mint:        #55ff9a;
   --ap-offwhite:    #f5f9ff;
   --ap-white:       #ffffff;
 
@@ -29,53 +30,38 @@
   --danger:      #d1495b;
   --ok:          #1f9d6b;
 
-  /* — On the navy surface — */
+  /* — On the photo — */
   --on-dark:        rgba(255, 255, 255, 0.96);
-  --on-dark-muted:  rgba(255, 255, 255, 0.70);
-  --on-dark-faint:  rgba(255, 255, 255, 0.52);
-  --on-dark-line:   rgba(255, 255, 255, 0.12);
-  --on-dark-line-2: rgba(255, 255, 255, 0.22);
-  --on-dark-fill:   rgba(255, 255, 255, 0.05);
+  --on-dark-muted:  rgba(255, 255, 255, 0.74);
+  --on-dark-faint:  rgba(255, 255, 255, 0.56);
+  --on-dark-line:   rgba(255, 255, 255, 0.20);
 
   /* — Type — */
   --font: "Outfit", system-ui, -apple-system, sans-serif;
+  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
   --w-light: 300; --w-reg: 400; --w-med: 500; --w-semi: 600; --w-bold: 700; --w-black: 800;
   --fs-eyebrow: clamp(1.2rem, 1.1rem + 0.2vw, 1.35rem);
   --fs-sm:   clamp(1.35rem, 1.3rem + 0.2vw, 1.5rem);
   --fs-body: clamp(1.5rem, 1.45rem + 0.3vw, 1.7rem);
-  --fs-lead: clamp(1.7rem, 1.6rem + 0.4vw, 1.95rem);
-  --fs-h3:   clamp(2.1rem, 1.85rem + 0.8vw, 2.7rem);
-  --fs-h2:   clamp(2.8rem, 2.3rem + 1.6vw, 3.9rem);
-  --fs-quote: clamp(2.0rem, 1.7rem + 1.0vw, 2.7rem);
-  --lh-tight: 1.06; --lh-snug: 1.2; --lh-body: 1.6;
-  --tr-tight: -0.02em; --tr-eyebrow: 0.16em;
+  --tr-eyebrow: 0.16em;
 
   /* — Spacing — */
   --s-1: 0.4rem; --s-2: 0.8rem; --s-3: 1.2rem; --s-4: 1.6rem; --s-5: 2.4rem;
-  --s-6: 3.2rem; --s-7: 4.8rem; --s-8: 6.4rem; --s-9: 9.6rem;
+  --s-6: 3.2rem; --s-7: 4.8rem; --s-8: 6.4rem;
 
   /* — Radii — */
   --r-sm: 0.8rem; --r-md: 1.4rem; --r-lg: 2.2rem; --r-xl: 3.2rem; --r-pill: 999rem;
 
   /* — Elevation — */
   --shadow-2: 0 0.6rem 1.6rem -0.4rem rgba(15,18,60,0.10), 0 0.2rem 0.6rem rgba(15,18,60,0.06);
-  --shadow-3: 0 2.4rem 5rem -1rem rgba(15,18,60,0.18), 0 0.8rem 1.6rem -0.6rem rgba(15,18,60,0.10);
+  --shadow-3: 0 3rem 6rem -1.4rem rgba(15,18,60,0.24), 0 1rem 2rem -0.8rem rgba(15,18,60,0.12);
   --shadow-teal: 0 1.2rem 3rem -0.8rem rgba(0,169,145,0.45);
   --ring: 0 0 0 0.3rem rgba(0,169,145,0.22);
 
   /* — Motion — */
-  --fast: 140ms; --normal: 280ms; --slow: 520ms;
+  --fast: 140ms; --normal: 280ms; --slow: 560ms;
   --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-
-  /* — Signature navy aurora (the trust panel surface) — */
-  --aurora:
-    radial-gradient(70rem 44rem at 82% -14%, rgba(0,169,145,0.34), transparent 60%),
-    radial-gradient(56rem 40rem at -10% 116%, rgba(57,194,129,0.20), transparent 58%),
-    radial-gradient(40rem 34rem at 46% 128%, rgba(85,255,154,0.08), transparent 60%),
-    var(--ap-navy);
-  /* Ampy's OWN form photo (their CDN, same asset as the live form) */
-  --form-photo: url("https://ampy.se/wp-content/uploads/form-image-1.webp");
 }
 
 * { box-sizing: border-box; }
@@ -84,7 +70,7 @@ body {
   margin: 0;
   font-family: var(--font);
   font-size: var(--fs-body);
-  line-height: var(--lh-body);
+  line-height: 1.6;
   color: var(--ink);
   background: var(--bg-page);
   -webkit-font-smoothing: antialiased;
@@ -95,19 +81,19 @@ body {
 .mf-section {
   display: flex;
   justify-content: center;
-  padding: clamp(3.2rem, 2rem + 5vw, 8rem) clamp(1.6rem, 1rem + 3vw, 4rem);
+  padding: clamp(3.2rem, 2rem + 5vw, 7rem) clamp(1.6rem, 1rem + 3vw, 4rem);
 }
 
-/* ---- The glas-kort ---------------------------------------------------- */
+/* ---- The card --------------------------------------------------------- */
 .mf-card {
   width: 100%;
-  max-width: 110rem;              /* 1100px — preserved */
+  max-width: 114rem;
   background: var(--bg-surface);
   border-radius: var(--r-lg);
   box-shadow: var(--shadow-3);
   overflow: hidden;
   display: grid;
-  grid-template-columns: 1.02fr 1fr;
+  grid-template-columns: 45fr 55fr;
   opacity: 0;
   transform: translateY(1.4rem);
   animation: mf-fade var(--slow) var(--ease-out) forwards;
@@ -115,153 +101,88 @@ body {
 @keyframes mf-fade { to { opacity: 1; transform: none; } }
 
 /* ============================================================================
-   LEFT — the trust panel (navy aurora, on-dark)
+   LEFT — the photo pane
    ============================================================================ */
-.mf-trust {
+.mf-photo {
   position: relative;
-  background:
-    linear-gradient(158deg, rgba(9,11,50,0.90) 0%, rgba(9,11,50,0.60) 48%, rgba(6,40,36,0.74) 100%),
-    radial-gradient(58rem 40rem at 86% -12%, rgba(0,169,145,0.40), transparent 60%),
-    var(--form-photo) center / cover no-repeat;
-  color: var(--on-dark);
-  padding: clamp(3.2rem, 2rem + 3vw, 5.2rem) clamp(2.8rem, 2rem + 2.5vw, 4.6rem);
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 62rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;   /* logo/quote up top, steps+proof anchored to the base */
-  gap: var(--s-7);
-  isolation: isolate;
+  justify-content: space-between;
+  gap: var(--s-6);
+  padding: clamp(3rem, 2rem + 2.4vw, 4.4rem);
+  color: var(--on-dark);
 }
-.mf-trust__top { display: flex; flex-direction: column; gap: var(--s-6); }
-.mf-trust__steps { display: flex; flex-direction: column; gap: var(--s-6); }
-/* bottom-darkening so the steps/proof stay legible over the photo */
-.mf-trust::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 34%, rgba(4,5,25,0.58) 100%);
-  pointer-events: none; z-index: -1;
+.mf-photo__img {
+  position: absolute; inset: 0; z-index: -2;
+  width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%;
 }
-
-.mf-logo { display: flex; align-items: center; gap: 0.9rem; }
-.mf-logo svg { width: 2.8rem; height: 2.8rem; }
-.mf-logo__word {
-  font-size: 2.4rem; font-weight: var(--w-bold);
-  letter-spacing: -0.01em; color: #fff;
+.mf-photo::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(6,8,30,0.46) 0%, rgba(6,8,30,0) 20%, rgba(6,8,30,0) 42%, rgba(6,8,30,0.60) 74%, rgba(5,6,24,0.92) 100%),
+    radial-gradient(70% 50% at 80% -10%, rgba(0,169,145,0.28), transparent 60%);
 }
 
-/* customer quote */
-.mf-quote { display: flex; flex-direction: column; gap: var(--s-4); }
-.mf-quote__mark {
-  font-size: 5rem; line-height: 0.6; font-weight: var(--w-black);
-  color: var(--ap-teal); height: 2.4rem;
-}
-.mf-quote__text {
-  font-size: var(--fs-quote); font-weight: var(--w-med);
-  line-height: var(--lh-snug); letter-spacing: var(--tr-tight);
-  color: #fff; margin: 0;
-}
-.mf-quote__by { font-size: var(--fs-sm); color: var(--on-dark-muted); }
+.mf-photo__logo { position: relative; display: flex; align-items: center; gap: 0.9rem; }
+.mf-photo__logo svg { width: 2.8rem; height: 2.8rem; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.4)); }
+.mf-photo__word { font-size: 2.4rem; font-weight: var(--w-bold); color: #fff; letter-spacing: -0.01em; text-shadow: 0 1px 6px rgba(0,0,0,0.35); }
 
-/* rating row — stars + Google, NO invented number (candour gate) */
-.mf-rating { display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap; }
-.mf-rating__stars { display: inline-flex; gap: 0.3rem; }
-.mf-rating__stars svg { width: 1.9rem; height: 1.9rem; color: #ffc24b; }
-.mf-rating__by {
-  display: inline-flex; align-items: center; gap: 0.6rem;
-  font-size: var(--fs-sm); color: var(--on-dark-muted);
-}
-.mf-rating__by svg { width: 1.6rem; height: 1.6rem; }
-.mf-rating__link { color: var(--on-dark-muted); text-decoration: none; border-bottom: 1px solid var(--on-dark-line-2); }
-.mf-rating__link:hover { color: #fff; }
+.mf-photo__body { position: relative; display: flex; flex-direction: column; gap: var(--s-5); }
 
-/* Google rating badge (Svea's Trustpilot slot → Ampy's real Google rating) */
-.mf-badge {
-  align-self: flex-start; display: inline-flex; align-items: center; gap: 1.2rem;
-  text-decoration: none; padding: 1rem 1.5rem 1rem 1.1rem; border-radius: var(--r-md);
-  background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.18);
-  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
-  transition: background var(--fast) var(--ease), transform var(--fast) var(--ease);
+.mf-photo__quote {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 1.7rem + 1.7vw, 3.1rem);
+  font-weight: var(--w-reg);
+  line-height: 1.24;
+  color: #fff;
+  text-wrap: balance;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.4);
 }
-.mf-badge:hover { background: rgba(255,255,255,0.15); transform: translateY(-1px); }
-.mf-badge__g { flex: 0 0 auto; width: 3.2rem; height: 3.2rem; border-radius: 50%; background: #fff; display: grid; place-items: center; }
-.mf-badge__g svg { width: 2rem; height: 2rem; }
-.mf-badge__body { display: flex; flex-direction: column; gap: 0.2rem; }
-.mf-badge__row { display: flex; align-items: center; gap: 0.9rem; }
-.mf-badge__score { font-size: 2.2rem; font-weight: var(--w-bold); color: #fff; line-height: 1; letter-spacing: -0.01em; }
-.mf-badge__stars { display: inline-flex; gap: 0.25rem; color: #ffc24b; }
-.mf-badge__stars svg { width: 1.7rem; height: 1.7rem; }
-.mf-badge__label { font-size: 1.3rem; color: var(--on-dark-muted); }
 
-/* Volume proof — deliberately SEPARATE from the rating (installations, not reviews) */
-.mf-vol {
-  display: inline-flex; align-items: center; gap: 0.7rem;
-  margin-top: calc(-1 * var(--s-3));
-  font-size: var(--fs-sm); color: var(--on-dark);
-}
-.mf-vol svg { flex: 0 0 auto; width: 1.8rem; height: 1.8rem; color: var(--ap-teal-bright); }
-.mf-vol strong { font-weight: var(--w-bold); color: #fff; }
+.mf-photo__rating { display: inline-flex; align-items: center; gap: 1rem; text-decoration: none; }
+.mf-photo__stars { display: inline-flex; gap: 0.25rem; color: #ffc24b; }
+.mf-photo__stars svg { width: 1.9rem; height: 1.9rem; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.35)); }
+.mf-photo__rating-txt { font-size: var(--fs-sm); color: var(--on-dark); }
+.mf-photo__rating-txt strong { font-weight: var(--w-semi); color: #fff; }
+.mf-photo__rating:hover .mf-photo__rating-txt { text-decoration: underline; }
 
-.mf-divider { height: 1px; background: var(--on-dark-line); border: 0; margin: 0; }
+.mf-photo__vol { margin: -1rem 0 0; font-size: var(--fs-sm); color: var(--on-dark-muted); }
+.mf-photo__vol strong { color: #fff; font-weight: var(--w-semi); }
 
-/* Vad händer sen — the ONE signature device */
-.mf-steps__title {
-  font-size: var(--fs-eyebrow); text-transform: uppercase;
-  letter-spacing: var(--tr-eyebrow); color: var(--on-dark-faint);
-  font-weight: var(--w-semi); margin: 0 0 var(--s-4);
+.mf-photo__steps {
+  list-style: none; margin: 0.4rem 0 0; padding: var(--s-5) 0 0;
+  border-top: 1px solid var(--on-dark-line);
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4);
 }
-.mf-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--s-5); }
-.mf-step { position: relative; display: grid; grid-template-columns: 4.2rem 1fr; gap: var(--s-4); align-items: start; }
-.mf-step__ico {
-  width: 4.2rem; height: 4.2rem; border-radius: var(--r-md);
-  background: var(--on-dark-fill); border: 1px solid var(--on-dark-line);
-  display: grid; place-items: center; color: var(--ap-teal-bright);
-}
-.mf-step__ico svg { width: 2.1rem; height: 2.1rem; }
-/* connector line between step icons */
-.mf-step:not(:last-child) .mf-step__ico::after {
-  content: ""; position: absolute; left: 2.05rem; top: 4.4rem;
-  width: 1px; height: calc(100% - 4.4rem + var(--s-5)); background: var(--on-dark-line);
-}
-.mf-step__body { padding-top: 0.4rem; }
-.mf-step__h { display: block; font-size: var(--fs-body); font-weight: var(--w-semi); color: #fff; }
-.mf-step__s { display: block; font-size: var(--fs-sm); color: var(--on-dark-muted); margin-top: 0.3rem; line-height: 1.5; }
-.mf-step__gap { color: var(--ap-teal-bright); font-weight: var(--w-med); }
-
-/* honest proof footer */
-.mf-proof { display: flex; flex-direction: column; gap: var(--s-3); margin-top: auto; }
-.mf-proof__row { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-4); }
-.mf-proof__item {
-  display: inline-flex; align-items: center; gap: 0.7rem;
-  font-size: var(--fs-sm); color: var(--on-dark-muted);
-}
-.mf-proof__item svg { width: 1.7rem; height: 1.7rem; color: var(--ap-teal-bright); flex: 0 0 auto; }
-.mf-proof__foot { font-size: 1.25rem; color: var(--on-dark-faint); }
+.mf-photo__step { display: flex; flex-direction: column; gap: 0.8rem; }
+.mf-photo__step svg { width: 2.2rem; height: 2.2rem; color: var(--ap-teal-bright); filter: drop-shadow(0 1px 3px rgba(0,0,0,0.35)); }
+.mf-photo__step span { font-size: 1.3rem; line-height: 1.35; color: var(--on-dark); }
 
 /* ============================================================================
    RIGHT — the form pane (white)
    ============================================================================ */
 .mf-form-pane {
-  padding: clamp(3.2rem, 2rem + 3vw, 5.2rem) clamp(2.6rem, 1.8rem + 2.5vw, 4.4rem);
+  padding: clamp(3.2rem, 2rem + 3vw, 5.6rem) clamp(2.6rem, 1.8rem + 2.5vw, 5rem);
   display: flex; flex-direction: column;
 }
 
 .mf-head { text-align: center; margin-bottom: var(--s-6); }
-.mf-head__eyebrow {
-  display: block; font-size: var(--fs-eyebrow); text-transform: uppercase;
-  letter-spacing: var(--tr-eyebrow); color: var(--ap-teal); font-weight: var(--w-semi);
-  margin-bottom: var(--s-3);
-}
 .mf-head__h {
-  font-size: var(--fs-h2); font-weight: var(--w-bold);
-  line-height: var(--lh-tight); letter-spacing: var(--tr-tight);
-  color: var(--ink); margin: 0;
-}
-.mf-head__h .grad {
-  background: linear-gradient(96deg, var(--ap-teal) 6%, var(--ap-green) 60%, var(--ap-mint) 116%);
-  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  font-family: var(--font-serif);
+  font-size: clamp(2.6rem, 2.1rem + 1.6vw, 3.6rem);
+  font-weight: var(--w-med);
+  line-height: 1.12; letter-spacing: -0.005em;
+  color: var(--ink); margin: 0; text-wrap: balance;
 }
 .mf-head__p {
-  font-size: var(--fs-lead); color: var(--ink-muted); line-height: 1.5;
-  margin: var(--s-4) auto 0; max-width: 44rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 1.5rem + 0.4vw, 1.9rem);
+  color: var(--ink-muted); line-height: 1.45;
+  margin: var(--s-4) auto 0; max-width: 42rem; text-wrap: balance;
 }
 
 /* form grid */
@@ -275,7 +196,7 @@ body {
 .mf-input, .mf-select, .mf-textarea {
   width: 100%; font-family: var(--font); font-size: 1.6rem; color: var(--ink);
   background: var(--field-bg); border: 1.5px solid transparent; border-radius: var(--r-sm);
-  padding: 1.25rem 1.4rem; line-height: 1.2;
+  padding: 1.3rem 1.4rem; line-height: 1.2;
   transition: border-color var(--fast) var(--ease), background var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
   -webkit-appearance: none; appearance: none;
 }
@@ -295,9 +216,7 @@ body {
 /* validation states */
 .mf-input.is-valid, .mf-textarea.is-valid { border-color: rgba(31,157,107,0.55); }
 .mf-input.is-invalid, .mf-select.is-invalid, .mf-textarea.is-invalid { border-color: var(--danger); background: #fff; }
-.mf-feedback {
-  font-size: 1.3rem; color: var(--danger); display: none; align-items: center; gap: 0.5rem;
-}
+.mf-feedback { font-size: 1.3rem; color: var(--danger); display: none; align-items: center; gap: 0.5rem; }
 .mf-field.has-error .mf-feedback { display: flex; }
 .mf-feedback svg { width: 1.4rem; height: 1.4rem; flex: 0 0 auto; }
 
@@ -318,8 +237,7 @@ body {
 .mf-addr__list {
   position: absolute; z-index: 20; left: 0; right: 0; top: calc(100% + 0.6rem);
   background: #fff; border: 1px solid var(--line); border-radius: var(--r-sm);
-  box-shadow: var(--shadow-3); overflow: hidden; max-height: 26rem; overflow-y: auto;
-  display: none;
+  box-shadow: var(--shadow-3); overflow: hidden; max-height: 26rem; overflow-y: auto; display: none;
 }
 .mf-addr__list.show { display: block; }
 .mf-addr__opt {
@@ -334,18 +252,12 @@ body {
 .mf-addr__opt small { color: var(--ink-faint); }
 .mf-addr__hint { font-size: 1.25rem; color: var(--ink-faint); margin-top: 0.5rem; }
 .mf-addr__mock-tag {
-  display: inline-flex; align-items: center; gap: 0.4rem;
-  font-size: 1.1rem; color: var(--ink-faint);
-  border: 1px dashed var(--line-strong); border-radius: var(--r-pill);
-  padding: 0.2rem 0.8rem; margin-left: 0.6rem;
+  display: inline-flex; align-items: center; gap: 0.4rem; font-size: 1.1rem; color: var(--ink-faint);
+  border: 1px dashed var(--line-strong); border-radius: var(--r-pill); padding: 0.2rem 0.8rem; margin-left: 0.6rem;
 }
-/* manual address fields (revealed) */
 .mf-manual-fields { display: none; grid-column: 1 / -1; gap: var(--s-4); grid-template-columns: 1fr 1fr; }
 .mf-manual-fields.show { display: grid; }
-.mf-addr__confirmed {
-  display: none; align-items: center; gap: 0.7rem; margin-top: 0.6rem;
-  font-size: 1.35rem; color: var(--ok); font-weight: var(--w-med);
-}
+.mf-addr__confirmed { display: none; align-items: center; gap: 0.7rem; margin-top: 0.6rem; font-size: 1.35rem; color: var(--ok); font-weight: var(--w-med); }
 .mf-addr__confirmed.show { display: flex; }
 .mf-addr__confirmed svg { width: 1.6rem; height: 1.6rem; }
 
@@ -362,96 +274,62 @@ body {
 .mf-chip input { position: absolute; opacity: 0; width: 0; height: 0; }
 .mf-chip__ico { width: 2rem; height: 2rem; color: var(--ink-muted); transition: color var(--fast) var(--ease); flex: 0 0 auto; }
 .mf-chip__ico svg { width: 100%; height: 100%; }
-.mf-chip__check {
-  width: 1.7rem; height: 1.7rem; opacity: 0; margin-left: -0.2rem;
-  transform: scale(0.6); transition: all var(--fast) var(--ease-out); color: var(--ap-teal);
-}
-.mf-chip.active {
-  background: rgba(0,169,145,0.09); border-color: var(--ap-teal); color: var(--ink);
-}
+.mf-chip__check { width: 1.7rem; height: 1.7rem; opacity: 0; margin-left: -0.2rem; transform: scale(0.6); transition: all var(--fast) var(--ease-out); color: var(--ap-teal); }
+.mf-chip.active { background: rgba(0,169,145,0.09); border-color: var(--ap-teal); color: var(--ink); }
 .mf-chip.active .mf-chip__ico { color: var(--ap-teal); }
 .mf-chip.active .mf-chip__check { opacity: 1; transform: scale(1); }
 .mf-chip:focus-within { box-shadow: var(--ring); }
 
-/* ---- Submit + consent ------------------------------------------------- */
+/* ---- Submit + consent (Svea gradient pill, in Ampy teal) -------------- */
 .mf-actions { grid-column: 1 / -1; margin-top: var(--s-3); }
 .mf-submit {
   position: relative; width: 100%; display: inline-flex; align-items: center; justify-content: center;
   gap: 1rem; font-family: var(--font); font-size: 1.8rem; font-weight: var(--w-semi);
-  color: #fff; background: var(--ap-teal); border: 0; border-radius: var(--r-md);
-  padding: 1.7rem 2.4rem; cursor: pointer; box-shadow: var(--shadow-teal);
-  transition: transform var(--fast) var(--ease), background var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
+  color: #fff; border: 0; border-radius: var(--r-pill); padding: 1.8rem 2.4rem; cursor: pointer;
+  background: linear-gradient(100deg, #009e88 0%, #00b597 52%, #17c6a0 100%);
+  box-shadow: var(--shadow-teal);
+  transition: transform var(--fast) var(--ease), filter var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
 }
-.mf-submit:hover { background: var(--ap-teal-bright); transform: translateY(-2px); }
+.mf-submit:hover { filter: brightness(1.06); transform: translateY(-2px); box-shadow: 0 1.6rem 3.4rem -0.8rem rgba(0,169,145,0.5); }
 .mf-submit:active { transform: translateY(0); }
 .mf-submit svg { width: 2rem; height: 2rem; transition: transform var(--fast) var(--ease); }
 .mf-submit:hover svg { transform: translateX(4px); }
 .mf-submit[disabled] { opacity: 0.7; cursor: default; transform: none; }
 .mf-submit.is-loading .mf-submit__label, .mf-submit.is-loading svg { visibility: hidden; }
-.mf-submit__spin {
-  display: none; position: absolute; width: 2.2rem; height: 2.2rem;
-  border: 2.5px solid rgba(255,255,255,0.4); border-top-color: #fff; border-radius: 50%;
-  animation: mf-spin 0.7s linear infinite;
-}
+.mf-submit__spin { display: none; position: absolute; width: 2.2rem; height: 2.2rem; border: 2.5px solid rgba(255,255,255,0.4); border-top-color: #fff; border-radius: 50%; animation: mf-spin 0.7s linear infinite; }
 .mf-submit.is-loading .mf-submit__spin { display: block; }
 @keyframes mf-spin { to { transform: rotate(360deg); } }
 
-.mf-consent {
-  grid-column: 1 / -1; text-align: center; font-size: 1.3rem; color: var(--ink-faint);
-  line-height: 1.55; margin-top: var(--s-3);
-}
+.mf-consent { grid-column: 1 / -1; text-align: center; font-size: 1.3rem; color: var(--ink-faint); line-height: 1.55; margin-top: var(--s-3); }
 .mf-consent a { color: var(--ink-muted); text-decoration: underline; text-underline-offset: 2px; }
 .mf-consent a:hover { color: var(--ap-teal); }
 
 /* ---- In-place success ------------------------------------------------- */
 .mf-form.is-hidden { display: none; }
-.mf-success { display: none; flex-direction: column; align-items: center; text-align: center; gap: var(--s-4); padding: var(--s-6) var(--s-2); }
+.mf-success { display: none; flex-direction: column; align-items: center; text-align: center; gap: var(--s-4); padding: var(--s-7) var(--s-2); margin: auto 0; }
 .mf-success.show { display: flex; animation: mf-fade var(--normal) var(--ease-out) both; }
-.mf-success__ico {
-  width: 7.2rem; height: 7.2rem; border-radius: 50%; display: grid; place-items: center;
-  background: rgba(57,194,129,0.12); color: var(--ap-green);
-}
+.mf-success__ico { width: 7.2rem; height: 7.2rem; border-radius: 50%; display: grid; place-items: center; background: rgba(57,194,129,0.12); color: var(--ap-green); }
 .mf-success__ico svg { width: 3.6rem; height: 3.6rem; }
-.mf-success__h { font-size: var(--fs-h3); font-weight: var(--w-bold); color: var(--ink); margin: 0; }
-.mf-success__p { font-size: var(--fs-lead); color: var(--ink-muted); max-width: 40rem; margin: 0; }
+.mf-success__h { font-family: var(--font-serif); font-size: clamp(2.4rem, 2rem + 1vw, 3rem); font-weight: var(--w-med); color: var(--ink); margin: 0; }
+.mf-success__p { font-size: 1.8rem; color: var(--ink-muted); max-width: 40rem; margin: 0; }
 .mf-success__meta { font-size: var(--fs-sm); color: var(--ink-faint); }
 
-/* mobile compact trust strip — hidden on desktop */
-.mf-trust-strip { display: none; }
-
 /* ============================================================================
-   Responsive — stack: compact trust strip → form → vad-händer-sen
+   Responsive — stack: photo banner on top, form below (like Svea mobile)
    ============================================================================ */
 @media (max-width: 900px) {
-  .mf-card { grid-template-columns: 1fr; display: flex; flex-direction: column; }
-  .mf-trust { display: contents; }             /* let children join the flex flow */
-  .mf-trust__top { order: 1; }
-  .mf-form-pane { order: 2; }
-  .mf-trust__steps { order: 3; }
-
-  /* re-skin the two trust blocks as standalone navy panels when unnested */
-  .mf-trust__top, .mf-trust__steps {
-    background:
-      linear-gradient(158deg, rgba(9,11,50,0.90), rgba(9,11,50,0.64) 55%, rgba(6,40,36,0.76)),
-      radial-gradient(40rem 30rem at 88% -10%, rgba(0,169,145,0.40), transparent 60%),
-      var(--form-photo) center / cover no-repeat;
-    color: var(--on-dark);
-    padding: clamp(2.8rem, 2rem + 3vw, 3.6rem) clamp(2.2rem, 1.6rem + 3vw, 3.2rem);
-    display: flex; flex-direction: column; gap: var(--s-5);
-  }
-  .mf-form-pane { padding: clamp(2.8rem, 2rem + 3vw, 3.6rem) clamp(2rem, 1.4rem + 3vw, 3.2rem); }
-
-  /* condense the top block on mobile: quote smaller, keep logo + rating */
-  .mf-quote__text { font-size: clamp(1.9rem, 1.6rem + 1.4vw, 2.3rem); }
-  .mf-step:not(:last-child) .mf-step__ico::after { height: calc(100% - 4.4rem + var(--s-5)); }
-  .mf-proof { margin-top: var(--s-2); }
+  .mf-card { grid-template-columns: 1fr; }
+  .mf-photo { min-height: 42rem; }
+  .mf-photo__quote { font-size: clamp(2rem, 1.6rem + 2vw, 2.5rem); }
 }
 
 @media (max-width: 560px) {
   .mf-form { grid-template-columns: 1fr; }
   .mf-field--half { grid-column: 1 / -1; }
   .mf-manual-fields { grid-template-columns: 1fr; }
-  .mf-head { text-align: center; }
+  .mf-photo { min-height: 38rem; padding: 2.6rem 2.2rem; }
+  .mf-photo__steps { gap: var(--s-3); }
+  .mf-photo__step span { font-size: 1.2rem; }
   .mf-chips { gap: var(--s-2); }
   .mf-chip { font-size: 1.4rem; padding: 0.9rem 1.3rem 0.9rem 1rem; }
 }

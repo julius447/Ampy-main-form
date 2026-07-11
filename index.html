@@ -8,7 +8,7 @@
 <!-- Prototype only: production self-hosts Outfit (no Google Fonts request). -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -17,107 +17,54 @@
   <div class="mf-card" role="region" aria-label="Kontakta Ampy för kostnadsfri rådgivning">
 
     <!-- ============================================================= -->
-    <!-- LEFT — trust panel (navy aurora). On mobile it splits into a  -->
-    <!-- top block (above the form) and a steps block (below it).      -->
+    <!-- LEFT — photo pane (Svea composition; Ampy's OWN photo/content) -->
+    <!-- Bright photo, darkened at the base; logo top, quote + Google   -->
+    <!-- rating + 3-step row anchored to the bottom.                    -->
     <!-- ============================================================= -->
-    <aside class="mf-trust">
+    <aside class="mf-photo">
+      <!-- Ampy's own photo (their ad base library). Swap to the electrician
+           shot: assets/form-photo-electrician.jpg -->
+      <img class="mf-photo__img" src="assets/form-photo.jpg" alt="" aria-hidden="true">
 
-      <div class="mf-trust__top">
-        <!-- 1. Ampy logo -->
-        <div class="mf-logo">
-          <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M60 3 L22 54 L45 54 L40 97 L80 41 L55 41 Z" fill="#55ff9a"/></svg>
-          <span class="mf-logo__word">ampy</span>
-        </div>
-
-        <!-- 2. Customer quote (our own displayed quote; "!" dropped per ampy-rost) -->
-        <figure class="mf-quote">
-          <span class="mf-quote__mark" aria-hidden="true">&rdquo;</span>
-          <blockquote class="mf-quote__text">Från start till mål levererades en service i världsklass.</blockquote>
-          <figcaption class="mf-quote__by">Kund till Ampy <!-- [GAP] attribuera med förnamn för mer tyngd --></figcaption>
-        </figure>
-
-        <!-- 3. Trust badge — Ampy's OWN Google rating (owner-confirmed 5,0), and,
-             kept explicitly SEPARATE, the installation volume. 3 000 = installationer,
-             NEVER omdömen/reviews (owner directive). -->
-        <a class="mf-badge" href="{acf_google_business_profile_url}" aria-label="Ampys betyg på Google: 5,0 av 5">
-          <span class="mf-badge__g" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.7-.06-1.4-.18-2.06H12v3.9h5.9a5 5 0 0 1-2.19 3.3v2.74h3.54c2.07-1.9 3.25-4.72 3.25-7.88z"/><path fill="#34A853" d="M12 23c2.95 0 5.43-.98 7.24-2.65l-3.54-2.74c-.98.66-2.24 1.05-3.7 1.05-2.85 0-5.26-1.92-6.12-4.5H2.23v2.83A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.88 14.16a6.6 6.6 0 0 1 0-4.32V7.01H2.23a11 11 0 0 0 0 9.98z"/><path fill="#EA4335" d="M12 5.38c1.6 0 3.05.55 4.19 1.64l3.13-3.13A11 11 0 0 0 12 1 11 11 0 0 0 2.23 7.01l3.65 2.83C6.74 7.3 9.15 5.38 12 5.38z"/></svg>
-          </span>
-          <span class="mf-badge__body">
-            <span class="mf-badge__row">
-              <span class="mf-badge__score">5,0</span>
-              <span class="mf-badge__stars" role="img" aria-label="5 av 5 stjärnor">
-                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.79L10 14.77 4.8 17.5l.99-5.79L1.58 7.62l5.82-.85z"/></svg>
-                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.79L10 14.77 4.8 17.5l.99-5.79L1.58 7.62l5.82-.85z"/></svg>
-                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.79L10 14.77 4.8 17.5l.99-5.79L1.58 7.62l5.82-.85z"/></svg>
-                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.79L10 14.77 4.8 17.5l.99-5.79L1.58 7.62l5.82-.85z"/></svg>
-                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.79L10 14.77 4.8 17.5l.99-5.79L1.58 7.62l5.82-.85z"/></svg>
-              </span>
-            </span>
-            <span class="mf-badge__label">Betyg på Google</span>
-          </span>
-        </a>
-        <!-- Volume proof — SEPARATE from the rating; installations, not reviews. -->
-        <div class="mf-vol">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><strong>3&nbsp;000+</strong> genomförda installationer om året</span>
-        </div>
+      <div class="mf-photo__logo">
+        <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M60 3 L22 54 L45 54 L40 97 L80 41 L55 41 Z" fill="#55ff9a"/></svg>
+        <span class="mf-photo__word">ampy</span>
       </div>
 
-      <!-- steps block (mobile: below the form) -->
-      <div class="mf-trust__steps">
-        <hr class="mf-divider">
+      <div class="mf-photo__body">
+        <!-- Ampy's own displayed customer quote ("!" dropped per ampy-rost) -->
+        <blockquote class="mf-photo__quote">&rdquo;Från start till mål levererades en service i världsklass.&rdquo;</blockquote>
 
-        <!-- 4. Vad händer sen — the ONE signature device -->
-        <div class="mf-steps-wrap">
-          <p class="mf-steps__title">Vad händer sen?</p>
-          <ol class="mf-steps">
-            <li class="mf-step">
-              <span class="mf-step__ico" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3 11 14"/><path d="M22 3l-7 19-4-8-8-4z"/></svg>
-              </span>
-              <span class="mf-step__body">
-                <span class="mf-step__h">Skicka in dina uppgifter</span>
-                <span class="mf-step__s">Namn, telefon och adress räcker för att vi ska komma igång.</span>
-              </span>
-            </li>
-            <li class="mf-step">
-              <span class="mf-step__ico" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
-              </span>
-              <span class="mf-step__body">
-                <span class="mf-step__h">En elektriker ringer upp dig</span>
-                <span class="mf-step__s">Vi går igenom ditt behov och vad som faktiskt behövs &ndash; på riktigt, ingen säljare.</span>
-                <!-- [GAP] Lägg till bekräftad återkopplingstid här när ägaren godkänt den, t.ex. "Vi hör av oss inom X." -->
+        <!-- Ampy's OWN Google rating (owner-confirmed 5,0). Trustpilot slot → Google. -->
+        <a class="mf-photo__rating" href="{acf_google_business_profile_url}" aria-label="Ampys betyg på Google: 5,0 av 5">
+          <span class="mf-photo__stars" role="img" aria-label="5 av 5 stjärnor">
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.79L10 14.77 4.8 17.5l.99-5.79L1.58 7.62l5.82-.85z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.79L10 14.77 4.8 17.5l.99-5.79L1.58 7.62l5.82-.85z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.79L10 14.77 4.8 17.5l.99-5.79L1.58 7.62l5.82-.85z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.79L10 14.77 4.8 17.5l.99-5.79L1.58 7.62l5.82-.85z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.79L10 14.77 4.8 17.5l.99-5.79L1.58 7.62l5.82-.85z"/></svg>
+          </span>
+          <span class="mf-photo__rating-txt"><strong>5,0 av 5</strong> &middot; Betyg på Google</span>
+        </a>
 
-              </span>
-            </li>
-            <li class="mf-step">
-              <span class="mf-step__ico" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-              </span>
-              <span class="mf-step__body">
-                <span class="mf-step__h">Få ett förslag utan köpkrav</span>
-                <span class="mf-step__s">Rådgivningen är kostnadsfri. Du bestämmer sen om du vill gå vidare.</span>
-              </span>
-            </li>
-          </ol>
-        </div>
+        <!-- Volume — SEPARATE from the rating; installations, never reviews (owner directive). -->
+        <p class="mf-photo__vol"><strong>3&nbsp;000+</strong> genomförda installationer om året</p>
 
-        <!-- honest proof (owner-confirmed facts only) -->
-        <div class="mf-proof">
-          <div class="mf-proof__row">
-            <span class="mf-proof__item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              Registrerat hos Elsäkerhetsverket
-            </span>
-            <span class="mf-proof__item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              ROT-avdraget draget direkt
-            </span>
-          </div>
-          <span class="mf-proof__foot">Vi arbetar i Stockholm med omnejd.</span>
-        </div>
+        <!-- "Vad händer sen" — 3-step row at the base (Svea placement) -->
+        <ul class="mf-photo__steps">
+          <li class="mf-photo__step">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3 11 14"/><path d="M22 3l-7 19-4-8-8-4z"/></svg>
+            <span>Skicka in dina uppgifter</span>
+          </li>
+          <li class="mf-photo__step">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+            <span>En elektriker ringer upp dig</span>
+          </li>
+          <li class="mf-photo__step">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            <span>Förslag utan köpkrav</span>
+          </li>
+        </ul>
       </div>
     </aside>
 
@@ -126,8 +73,7 @@
     <!-- ============================================================= -->
     <div class="mf-form-pane">
       <header class="mf-head">
-        <span class="mf-head__eyebrow">Kostnadsfritt &middot; utan köpkrav</span>
-        <h2 class="mf-head__h">Få ett förslag som passar <span class="grad">dig</span></h2>
+        <h2 class="mf-head__h">Få ett förslag som passar dig</h2>
         <p class="mf-head__p">Med dina uppgifter räknar vi på just ditt fall och föreslår rätt lösning &ndash; redan innan vi ringer.</p>
       </header>
 
