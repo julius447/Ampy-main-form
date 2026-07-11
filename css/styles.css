@@ -60,10 +60,10 @@ body {
   display: grid; grid-template-columns: 1fr 1fr;
   border-radius: var(--r-card); overflow: hidden;
   box-shadow: 0 1rem 3rem -1.8rem rgba(15,18,60,0.12);   /* whisper — Svea itself is flat */
-  opacity: 0; transform: translateY(1.2rem);
+  opacity: 0;                                        /* opacity-only: transform on a rounded+overflow-hidden box flashes square corners on Safari */
   animation: mf-fade 0.5s var(--ease-out) forwards;
 }
-@keyframes mf-fade { to { opacity: 1; transform: none; } }
+@keyframes mf-fade { to { opacity: 1; } }
 
 /* ============================================================================
    LEFT — photo pane
@@ -99,11 +99,11 @@ body {
 .mf-photo__rating { display: inline-flex; align-items: center; justify-content: center; gap: 0.9rem; text-decoration: none; }
 .mf-photo__stars { display: inline-flex; gap: 0.2rem; color: #ffc24b; }
 .mf-photo__stars svg { width: 1.8rem; height: 1.8rem; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4)); }
-.mf-photo__rating-txt { font-size: 1.4rem; font-weight: var(--w-light); color: var(--on-dark); }
+.mf-photo__rating-txt { font-size: 1.4rem; font-weight: var(--w-light); color: var(--on-dark); text-shadow: 0 1px 6px rgba(0,0,0,0.45); }
 .mf-photo__rating-txt strong { font-weight: var(--w-semi); color: #fff; }
 .mf-photo__rating:hover .mf-photo__rating-txt { text-decoration: underline; }
 
-.mf-photo__vol { margin: 0; font-size: 1.5rem; font-weight: var(--w-light); color: var(--on-dark-muted); }
+.mf-photo__vol { margin: 0; font-size: 1.5rem; font-weight: var(--w-reg); color: var(--on-dark); text-shadow: 0 1px 6px rgba(0,0,0,0.45); }
 .mf-photo__vol strong { color: #fff; font-weight: var(--w-semi); }
 
 /* 3-step row (Svea: horizontal 3-up, filled white icons ~20px, centered labels 14px/500, NO divider) */
@@ -156,8 +156,8 @@ body {
   padding: 1.6rem 1.8rem; line-height: 1.2;                                /* Svea 16x18 */
   transition: border-color var(--fast) var(--ease); -webkit-appearance: none; appearance: none;
 }
-.mf-input::placeholder, .mf-textarea::placeholder { color: #999; }
-.mf-input:focus, .mf-textarea:focus { outline: none; border-color: var(--ap-teal); }   /* Svea uses #000; we keep brand teal */
+.mf-input::placeholder, .mf-textarea::placeholder { color: #6a6a6a; }   /* AA contrast on the grey field */
+.mf-input:focus, .mf-textarea:focus { outline: none; border-color: var(--ap-teal); box-shadow: 0 0 0 3px rgba(0,169,145,0.30); }   /* visible focus cue ≥3:1 */
 .mf-textarea { resize: none; min-height: 7rem; }   /* no user-resize handle */
 
 .mf-input.is-valid, .mf-textarea.is-valid { border-color: rgba(31,157,107,0.5); }
@@ -174,7 +174,7 @@ body {
 .mf-addr__input-wrap { position: relative; }
 .mf-addr__input-wrap .mf-addr-icon { position: absolute; left: 1.6rem; top: 50%; transform: translateY(-50%); width: 1.8rem; height: 1.8rem; color: #999; pointer-events: none; }
 .mf-addr__input-wrap .mf-input { padding-left: 4.4rem; background: var(--addr-bg); border-color: var(--addr-bg); }
-.mf-addr__input-wrap .mf-input:focus { border-color: var(--ap-teal); background: #fff; }
+.mf-addr__input-wrap .mf-input:focus { border-color: var(--ap-teal); background: #fff; box-shadow: 0 0 0 3px rgba(0,169,145,0.30); }
 .mf-addr__list { position: absolute; z-index: 20; left: 0; right: 0; top: calc(100% + 0.6rem); background: #fff; border: 1px solid rgba(15,18,60,0.1); border-radius: var(--r-input); box-shadow: 0 2rem 4rem -1rem rgba(15,18,60,0.2); overflow: hidden; max-height: 26rem; overflow-y: auto; display: none; }
 .mf-addr__list.show { display: block; }
 .mf-addr__opt { display: flex; align-items: center; gap: 1rem; width: 100%; text-align: left; padding: 1.1rem 1.4rem; font-size: 1.5rem; color: var(--ink); background: none; border: 0; cursor: pointer; font-family: var(--font); border-bottom: 1px solid rgba(15,18,60,0.08); }
@@ -182,7 +182,7 @@ body {
 .mf-addr__opt:hover, .mf-addr__opt.active { background: var(--field-bg); }
 .mf-addr__opt svg { width: 1.6rem; height: 1.6rem; color: var(--ap-teal); flex: 0 0 auto; }
 .mf-addr__opt mark { background: none; color: var(--ap-teal); font-weight: var(--w-semi); }
-.mf-addr__opt small { color: #999; }
+.mf-addr__opt small { color: #6a6a6a; }
 /* manual-address box (Svea): a bordered container wrapping street / zip / city */
 .mf-manual-fields { display: none; grid-column: 1 / -1; grid-template-columns: 1fr 1fr; gap: 1.6rem 2rem; }
 .mf-manual-fields.show { display: grid; margin-top: 1rem; padding: 1.8rem; border: 1px solid rgba(15,18,60,0.14); border-radius: 1rem; }
@@ -214,6 +214,18 @@ body {
 .mf-consent a { color: var(--consent); text-decoration: none; }
 .mf-consent a:hover { text-decoration: underline; }
 
+/* honeypot — off-screen, never shown to humans */
+.mf-hp-wrap { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+
+/* webhook-failure error state (production only; prototype tolerates CORS) */
+.mf-error { grid-column: 1 / -1; display: none; text-align: center; font-size: 1.35rem; color: var(--danger);
+  background: rgba(209,73,91,0.08); border: 1px solid rgba(209,73,91,0.25); border-radius: var(--r-input); padding: 1.1rem 1.4rem; margin-top: 1rem; }
+.mf-error.show { display: block; }
+.mf-error strong { font-weight: var(--w-semi); }
+
+/* address dropdown note (fetch error / no results) */
+.mf-addr__note { padding: 1.2rem 1.4rem; font-size: 1.35rem; line-height: 1.4; color: var(--consent); }
+
 /* ---- In-place success ------------------------------------------------------ */
 .mf-form.is-hidden { display: none; }
 .mf-success { display: none; flex-direction: column; align-items: center; text-align: center; gap: 1.6rem; padding: 4rem 0; margin: auto 0; }
@@ -222,7 +234,7 @@ body {
 .mf-success__ico svg { width: 3.2rem; height: 3.2rem; }
 .mf-success__h { font-size: 2.2rem; font-weight: var(--w-semi); color: var(--ink-head); margin: 0; }
 .mf-success__p { font-size: 1.6rem; color: var(--consent); max-width: 38rem; margin: 0; }
-.mf-success__meta { font-size: 1.4rem; color: var(--ink-faint); }
+.mf-success__meta { font-size: 1.4rem; color: var(--consent); }   /* AA contrast for the phone line */
 
 /* ============================================================================
    Responsive — Svea switches at 768px; below it stacks (photo banner → form)
@@ -247,7 +259,7 @@ body {
 
   /* steps under the form, over the photo bottom */
   .mf-photo__steps--mobile {
-    display: flex; flex-direction: column; gap: 2rem;
+    display: flex; flex-direction: column; gap: 2rem; align-self: stretch;   /* base align-self:end (desktop) would push it right in flex-column */
     position: relative; z-index: 2; width: auto; padding: 3.2rem 3.4rem 3.6rem;
   }
   .mf-photo__steps--mobile .mf-photo__step { display: flex; flex-direction: row; align-items: center; justify-content: flex-start; gap: 1.4rem; text-align: left; }

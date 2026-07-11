@@ -75,6 +75,10 @@
       <form class="mf-form" id="mfForm" novalidate>
         <!-- hidden mapping fields for the webhook -->
         <input type="hidden" name="form_type" value="Kontakt">
+        <!-- honeypot (bots fill it; humans never see it). Server MUST also enforce. -->
+        <div class="mf-hp-wrap" aria-hidden="true">
+          <label>Lämna tomt<input id="mf_hp" name="company_url" type="text" tabindex="-1" autocomplete="off"></label>
+        </div>
 
         <!-- 1. Förnamn | Efternamn -->
         <div class="mf-field mf-field--half" data-validate="forenamn">
@@ -104,7 +108,7 @@
         <div class="mf-field mf-field--full mf-addr" data-validate="address">
           <div class="mf-addr__label-row">
             <label class="mf-label" for="mf_adress_sok">Adress <span class="mf-req">*</span></label>
-            <button type="button" class="mf-addr__manual" id="mfAddrManual">Ange adress manuellt</button>
+            <button type="button" class="mf-addr__manual" id="mfAddrManual" aria-expanded="false" aria-controls="mfManualFields">Ange adress manuellt</button>
           </div>
           <div class="mf-addr__input-wrap">
             <svg class="mf-addr-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -144,6 +148,10 @@
           </button>
         </div>
 
+        <p class="mf-error" id="mfError" role="alert" tabindex="-1">
+          Något gick fel när formuläret skulle skickas. Försök igen, eller ring oss på <strong>010&ndash;265 79 79</strong>.
+        </p>
+
         <p class="mf-consent">
           Genom att skicka in godkänner du att Ampy kontaktar dig enligt vår
           <a href="/integritetspolicy/">integritetspolicy</a>.
@@ -151,7 +159,7 @@
       </form>
 
       <!-- In-place success (no redirect) -->
-      <div class="mf-success" id="mfSuccess" role="status" aria-live="polite">
+      <div class="mf-success" id="mfSuccess" role="status" aria-live="polite" tabindex="-1">
         <div class="mf-success__ico" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
         </div>
