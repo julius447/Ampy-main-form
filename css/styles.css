@@ -74,6 +74,8 @@
     radial-gradient(56rem 40rem at -10% 116%, rgba(57,194,129,0.20), transparent 58%),
     radial-gradient(40rem 34rem at 46% 128%, rgba(85,255,154,0.08), transparent 60%),
     var(--ap-navy);
+  /* Ampy's OWN form photo (their CDN, same asset as the live form) */
+  --form-photo: url("https://ampy.se/wp-content/uploads/form-image-1.webp");
 }
 
 * { box-sizing: border-box; }
@@ -117,7 +119,10 @@ body {
    ============================================================================ */
 .mf-trust {
   position: relative;
-  background: var(--aurora);
+  background:
+    linear-gradient(158deg, rgba(9,11,50,0.90) 0%, rgba(9,11,50,0.60) 48%, rgba(6,40,36,0.74) 100%),
+    radial-gradient(58rem 40rem at 86% -12%, rgba(0,169,145,0.40), transparent 60%),
+    var(--form-photo) center / cover no-repeat;
   color: var(--on-dark);
   padding: clamp(3.2rem, 2rem + 3vw, 5.2rem) clamp(2.8rem, 2rem + 2.5vw, 4.6rem);
   display: flex;
@@ -128,11 +133,11 @@ body {
 }
 .mf-trust__top { display: flex; flex-direction: column; gap: var(--s-6); }
 .mf-trust__steps { display: flex; flex-direction: column; gap: var(--s-6); }
-/* faint grain/vignette for depth */
+/* bottom-darkening so the steps/proof stay legible over the photo */
 .mf-trust::after {
   content: "";
   position: absolute; inset: 0;
-  background: radial-gradient(120% 80% at 50% 0%, transparent 60%, rgba(0,0,0,0.22));
+  background: linear-gradient(180deg, transparent 34%, rgba(4,5,25,0.58) 100%);
   pointer-events: none; z-index: -1;
 }
 
@@ -167,6 +172,33 @@ body {
 .mf-rating__by svg { width: 1.6rem; height: 1.6rem; }
 .mf-rating__link { color: var(--on-dark-muted); text-decoration: none; border-bottom: 1px solid var(--on-dark-line-2); }
 .mf-rating__link:hover { color: #fff; }
+
+/* Google rating badge (Svea's Trustpilot slot → Ampy's real Google rating) */
+.mf-badge {
+  align-self: flex-start; display: inline-flex; align-items: center; gap: 1.2rem;
+  text-decoration: none; padding: 1rem 1.5rem 1rem 1.1rem; border-radius: var(--r-md);
+  background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.18);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  transition: background var(--fast) var(--ease), transform var(--fast) var(--ease);
+}
+.mf-badge:hover { background: rgba(255,255,255,0.15); transform: translateY(-1px); }
+.mf-badge__g { flex: 0 0 auto; width: 3.2rem; height: 3.2rem; border-radius: 50%; background: #fff; display: grid; place-items: center; }
+.mf-badge__g svg { width: 2rem; height: 2rem; }
+.mf-badge__body { display: flex; flex-direction: column; gap: 0.2rem; }
+.mf-badge__row { display: flex; align-items: center; gap: 0.9rem; }
+.mf-badge__score { font-size: 2.2rem; font-weight: var(--w-bold); color: #fff; line-height: 1; letter-spacing: -0.01em; }
+.mf-badge__stars { display: inline-flex; gap: 0.25rem; color: #ffc24b; }
+.mf-badge__stars svg { width: 1.7rem; height: 1.7rem; }
+.mf-badge__label { font-size: 1.3rem; color: var(--on-dark-muted); }
+
+/* Volume proof — deliberately SEPARATE from the rating (installations, not reviews) */
+.mf-vol {
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  margin-top: calc(-1 * var(--s-3));
+  font-size: var(--fs-sm); color: var(--on-dark);
+}
+.mf-vol svg { flex: 0 0 auto; width: 1.8rem; height: 1.8rem; color: var(--ap-teal-bright); }
+.mf-vol strong { font-weight: var(--w-bold); color: #fff; }
 
 .mf-divider { height: 1px; background: var(--on-dark-line); border: 0; margin: 0; }
 
@@ -213,6 +245,11 @@ body {
 }
 
 .mf-head { text-align: center; margin-bottom: var(--s-6); }
+.mf-head__eyebrow {
+  display: block; font-size: var(--fs-eyebrow); text-transform: uppercase;
+  letter-spacing: var(--tr-eyebrow); color: var(--ap-teal); font-weight: var(--w-semi);
+  margin-bottom: var(--s-3);
+}
 .mf-head__h {
   font-size: var(--fs-h2); font-weight: var(--w-bold);
   line-height: var(--lh-tight); letter-spacing: var(--tr-tight);
@@ -394,7 +431,11 @@ body {
 
   /* re-skin the two trust blocks as standalone navy panels when unnested */
   .mf-trust__top, .mf-trust__steps {
-    background: var(--aurora); color: var(--on-dark);
+    background:
+      linear-gradient(158deg, rgba(9,11,50,0.90), rgba(9,11,50,0.64) 55%, rgba(6,40,36,0.76)),
+      radial-gradient(40rem 30rem at 88% -10%, rgba(0,169,145,0.40), transparent 60%),
+      var(--form-photo) center / cover no-repeat;
+    color: var(--on-dark);
     padding: clamp(2.8rem, 2rem + 3vw, 3.6rem) clamp(2.2rem, 1.6rem + 3vw, 3.2rem);
     display: flex; flex-direction: column; gap: var(--s-5);
   }
