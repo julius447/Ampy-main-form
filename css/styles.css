@@ -76,7 +76,7 @@ body {
   position: relative; z-index: 2;                    /* over the card background */
   display: grid; grid-template-rows: 1fr auto;       /* info centered in 1fr, steps pinned to base row */
   justify-items: center; align-items: center;
-  padding: 4rem 2.2rem 8.5rem;                        /* extra bottom → steps a touch higher */
+  padding: 3.6rem 2.2rem 6rem;                        /* steps sit a bit higher */
   color: var(--on-dark); text-align: center;
 }
 /* mobile-only blocks — hidden on desktop */
@@ -123,10 +123,10 @@ body {
 .mf-form-pane {
   position: relative; z-index: 2;                    /* opaque — covers the card bg (right half on desktop) */
   background: #fff; display: flex; flex-direction: column;
-  padding: clamp(3.2rem, 2rem + 2.8vw, 5.6rem) clamp(2.8rem, 1.6rem + 2.4vw, 4.8rem);
+  padding: clamp(2.8rem, 1.6rem + 2.2vw, 4.2rem) clamp(2.8rem, 1.6rem + 2.4vw, 4.8rem);
 }
 
-.mf-head { text-align: center; display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 3.2rem; }
+.mf-head { text-align: center; display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.4rem; }
 .mf-head__h {                                    /* Svea 24px + a touch bigger per owner */
   margin: 0; font-size: clamp(2.4rem, 2rem + 0.9vw, 2.9rem);
   font-weight: var(--w-med); line-height: 1.35; color: var(--ink-head);
@@ -142,11 +142,12 @@ body {
 }
 
 /* form grid — Svea: 2-col ≥400px container, gap 24px row / 32px col */
-.mf-form { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4rem 3.2rem; }
+.mf-form { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem 3.2rem; }
 .mf-field { display: flex; flex-direction: column; gap: 0.8rem; }         /* Svea label→input gap 8px */
 .mf-field--full { grid-column: 1 / -1; }
 
 .mf-label { font-size: 1.4rem; font-weight: var(--w-med); color: var(--ink-head); }
+.mf-req { color: var(--ap-teal); }
 
 .mf-input, .mf-textarea {
   width: 100%; font-family: var(--font); font-size: 1.6rem; color: var(--ink);
@@ -156,7 +157,7 @@ body {
 }
 .mf-input::placeholder, .mf-textarea::placeholder { color: #999; }
 .mf-input:focus, .mf-textarea:focus { outline: none; border-color: var(--ap-teal); }   /* Svea uses #000; we keep brand teal */
-.mf-textarea { resize: none; min-height: 8.4rem; }   /* a touch bigger, no user-resize handle */
+.mf-textarea { resize: none; min-height: 7rem; }   /* no user-resize handle */
 
 .mf-input.is-valid, .mf-textarea.is-valid { border-color: rgba(31,157,107,0.5); }
 .mf-input.is-invalid, .mf-textarea.is-invalid { border-color: var(--danger); }
@@ -208,7 +209,7 @@ body {
 .mf-submit.is-loading .mf-submit__spin { display: block; }
 @keyframes mf-spin { to { transform: rotate(360deg); } }
 
-.mf-consent { grid-column: 1 / -1; text-align: center; font-size: 1.2rem; font-weight: var(--w-light); color: var(--consent); line-height: 1.6; margin-top: 0.8rem; }   /* closer to the CTA */
+.mf-consent { grid-column: 1 / -1; text-align: center; font-size: 1.2rem; font-weight: var(--w-light); color: var(--consent); line-height: 1.5; margin-top: 0.4rem; }   /* tight to the CTA */
 .mf-consent a { color: var(--consent); text-decoration: none; }
 .mf-consent a:hover { text-decoration: underline; }
 
@@ -234,20 +235,17 @@ body {
   .mf-photo { display: block; padding: 4.4rem 2rem 3.6rem; text-align: center; }
   .mf-photo__logo { display: none; }
   .mf-photo__body { max-width: none; gap: 1.4rem; }
-  .mf-photo__quote { font-size: clamp(2.7rem, 2.2rem + 3vw, 3.4rem); max-width: 15ch; }
-  .mf-photo__vol { display: none; }                  /* moves under the form on mobile */
+  .mf-photo__quote { font-size: clamp(2.4rem, 2rem + 2.4vw, 3rem); max-width: 15ch; }
+  .mf-photo__vol { display: none; }
   .mf-photo__steps--desktop { display: none; }
+  .mf-vol--mobile { display: none; }                 /* hidden on mobile per owner */
 
   .mf-form-pane { margin: 0 1.6rem; border-radius: var(--r-card); padding: 2.8rem 2rem; }
 
-  /* proof line under the form (over the photo) */
-  .mf-vol--mobile { display: block; position: relative; z-index: 2; text-align: center; color: #fff; font-size: 1.5rem; font-weight: var(--w-light); padding: 2.8rem 2rem 0; }
-  .mf-vol--mobile strong { color: #fff; font-weight: var(--w-semi); }
-
-  /* steps under the proof line (over the photo bottom) */
+  /* steps under the form, over the photo bottom */
   .mf-photo__steps--mobile {
-    display: flex; flex-direction: column; gap: 1.8rem;
-    position: relative; z-index: 2; width: auto; padding: 2.2rem 3.4rem 3.6rem;
+    display: flex; flex-direction: column; gap: 2rem;
+    position: relative; z-index: 2; width: auto; padding: 3.2rem 3.4rem 3.6rem;
   }
   .mf-photo__steps--mobile .mf-photo__step { display: flex; flex-direction: row; align-items: center; justify-content: flex-start; gap: 1.4rem; text-align: left; }
   .mf-photo__steps--mobile .mf-photo__step svg { width: 2rem; height: 2rem; flex: 0 0 auto; }

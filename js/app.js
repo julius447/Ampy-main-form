@@ -67,31 +67,28 @@
     p[0].addEventListener("input", function () { if (p[0].classList.contains("is-invalid") && p[1]()) mark(p[0], true); });
   });
 
-  /* ---- address autocomplete (MOCK — Sweden-wide) -------------------------
-     Prototype list spans multiple cities so a query like "drottning" returns
-     several hits (Stockholm, Göteborg, Malmö, Falsterbo…). In production this
-     is replaced by a real address API; the UI here is API-agnostic. */
-  var MOCK = [
-    { s: "Drottninggatan 71", z: "111 36", c: "Stockholm" },
-    { s: "Drottninggatan 25", z: "411 14", c: "Göteborg" },
-    { s: "Drottninggatan 4", z: "211 41", c: "Malmö" },
-    { s: "Drottninggatan 12", z: "239 30", c: "Falsterbo" },
-    { s: "Drottninggatan 60", z: "753 10", c: "Uppsala" },
-    { s: "Sveavägen 44", z: "111 34", c: "Stockholm" },
-    { s: "Kungsgatan 12", z: "111 43", c: "Stockholm" },
-    { s: "Kungsgatan 30", z: "411 19", c: "Göteborg" },
-    { s: "Storgatan 5", z: "172 71", c: "Sundbyberg" },
-    { s: "Storgatan 22", z: "903 26", c: "Umeå" },
-    { s: "Ankdammsgatan 33", z: "171 67", c: "Solna" },
-    { s: "Vasagatan 16", z: "111 20", c: "Stockholm" },
-    { s: "Nygatan 8", z: "602 27", c: "Norrköping" },
-    { s: "Södra Förstadsgatan 40", z: "211 43", c: "Malmö" },
-    { s: "Avenyn 5", z: "411 36", c: "Göteborg" }
-  ];
-  function search(q) {
-    q = q.trim().toLowerCase();
-    if (q.length < 2) return [];
-    return MOCK.filter(function (a) { return (a.s + " " + a.z + " " + a.c).toLowerCase().indexOf(q) !== -1; }).slice(0, 6);
+  /* ---- address autocomplete — REAL, whole of Sweden ----------------------
+     Prototype uses Photon (photon.komoot.io, OSM, free, no key, CORS, EU-hosted),
+     bounded to Sweden. For PRODUCTION swap the fetch for Google Places
+     Autocomplete (referrer-locked key) — see README. Query → [{s,z,c}]. */
+  var PHOTON = "https://photon.komoot.io/api/";
+  function fetchAddresses(q, cb) {
+    q = q.trim();
+    if (q.length < 3) { cb([]); return; }
+    var url = PHOTON + "?q=" + encodeURIComponent(q) +
+      "&limit=8&lat=59.33&lon=18.06";   /* Photon has no sv locale; address data is language-neutral */
+    fetch(url).then(function (r) { return r.json(); }).then(function (d) {
+      var seen = {};
+      var items = (d.features || []).map(function (f) {
+        var p = f.properties || {};
+        var street = p.street ? (p.street + (p.housenumber ? " " + p.housenumber : "")) : (p.name || "");
+        return { s: street, z: p.postcode || "", c: p.city || p.town || p.village || p.municipality || "", cc: p.countrycode };
+      }).filter(function (a) {
+        if (!a.s || a.cc !== "SE") return false;
+        var k = a.s + a.z + a.c; if (seen[k]) return false; seen[k] = 1; return true;
+      });
+      cb(items);
+    }).catch(function () { cb([]); });
   }
   function hl(text, q) {
     var i = text.toLowerCase().indexOf(q.toLowerCase());
@@ -120,7 +117,7 @@
   var deb;
   els.addrSok.addEventListener("input", function () {
     trackStart(); clearTimeout(deb); var q = els.addrSok.value;
-    deb = setTimeout(function () { renderList(search(q), q); }, 110);
+    deb = setTimeout(function () { fetchAddresses(q, function (items) { renderList(items, q); }); }, 250);
   });
   els.addrSok.addEventListener("blur", function () { setTimeout(closeList, 150); });
   els.addrSok.addEventListener("keydown", function (e) {
