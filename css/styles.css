@@ -1,66 +1,43 @@
 /* ============================================================================
-   Ampy — Main form redesign (offert / "Få ett förslag som passar dig")
-   Composition faithful to Svea Solar's fri-offert (photo LEFT / form RIGHT,
-   serif hero type, gradient pill) — but Ampy's OWN photo, copy, Google rating
-   and tokens. Layout is cloned; nothing of Svea's content/brand is reproduced.
-   Prototype: rem base = 62.5% (1rem = 10px). Production self-hosts fonts.
+   Ampy — Main form. Container/layout/typography scale matched 1:1 to Svea Solar's
+   fri-offert (measured from their emotion CSS by analysis agents), with Ampy's
+   OWN photo, logo, copy, Google rating and teal. Svea's real font is a grotesque
+   (beausiteClassic) → we use Outfit (owner-approved). No serif.
+   Prototype: rem base = 62.5% (1rem = 10px).
    ============================================================================ */
 
 :root {
-  /* — Brand core — */
   --ap-navy:        #090b32;
-  --ap-navy-2:      #0d1145;
   --ap-teal:        #00a991;
   --ap-teal-bright: #1cc4af;
   --ap-green:       #39c281;
   --ap-mint:        #55ff9a;
-  --ap-offwhite:    #f5f9ff;
+  --ap-offwhite:    #f4f5f7;
   --ap-white:       #ffffff;
 
-  /* — Semantic (light) — */
-  --bg-page:     var(--ap-offwhite);
-  --bg-surface:  var(--ap-white);
-  --field-bg:    #f7f7f7;   /* measured off Svea: neutral grey, not bluish */
-  --field-bg-2:  #f0f0f0;
-  --ink:         #0f123c;
-  --ink-serif:   #4d4d4d;   /* measured off Svea heading/paragraph colour */
-  --ink-muted:   #565e82;
+  /* Svea-matched neutrals */
+  --field-bg:    #f7f7f7;   /* Svea input bg */
+  --addr-bg:     #f4f4f5;   /* Svea address-combobox bg */
+  --ink:         #171717;   /* Svea typed-text color */
+  --ink-head:    #4d4d4d;   /* Svea heading/label/paragraph color */
   --ink-faint:   #8a90ac;
-  --line:        rgba(15, 18, 60, 0.10);
-  --line-strong: rgba(15, 18, 60, 0.16);
-  --danger:      #d1495b;
+  --consent:     #6a6a6a;   /* Svea disclaimer color */
+  --addr-link:   #545454;   /* Svea "ange adress manuellt" */
+  --danger:      #e00000;   /* Svea input error */
   --ok:          #1f9d6b;
 
-  /* — On the photo — */
-  --on-dark:        rgba(255, 255, 255, 0.96);
-  --on-dark-muted:  rgba(255, 255, 255, 0.74);
-  --on-dark-faint:  rgba(255, 255, 255, 0.56);
-  --on-dark-line:   rgba(255, 255, 255, 0.20);
+  --on-dark:       rgba(255,255,255,0.96);
+  --on-dark-muted: rgba(255,255,255,0.82);
+  --on-dark-line:  rgba(255,255,255,0.22);
 
-  /* — Type — */
   --font: "Outfit", system-ui, -apple-system, sans-serif;
-  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
-  --w-light: 300; --w-reg: 400; --w-med: 500; --w-semi: 600; --w-bold: 700; --w-black: 800;
-  --fs-eyebrow: clamp(1.2rem, 1.1rem + 0.2vw, 1.35rem);
-  --fs-sm:   clamp(1.35rem, 1.3rem + 0.2vw, 1.5rem);
-  --fs-body: clamp(1.5rem, 1.45rem + 0.3vw, 1.7rem);
-  --tr-eyebrow: 0.16em;
+  --w-light: 300; --w-reg: 400; --w-med: 500; --w-semi: 600; --w-bold: 700;
 
-  /* — Spacing — */
-  --s-1: 0.4rem; --s-2: 0.8rem; --s-3: 1.2rem; --s-4: 1.6rem; --s-5: 2.4rem;
-  --s-6: 3.2rem; --s-7: 4.8rem; --s-8: 6.4rem;
+  --r-input: 0.8rem;   /* Svea 8px */
+  --r-card:  1.5rem;   /* Svea 15px */
+  --r-pill:  99rem;
 
-  /* — Radii — */
-  --r-sm: 0.8rem; --r-md: 1.4rem; --r-lg: 2.2rem; --r-xl: 3.2rem; --r-pill: 999rem;
-
-  /* — Elevation — */
-  --shadow-2: 0 0.6rem 1.6rem -0.4rem rgba(15,18,60,0.10), 0 0.2rem 0.6rem rgba(15,18,60,0.06);
-  --shadow-3: 0 3rem 6rem -1.4rem rgba(15,18,60,0.24), 0 1rem 2rem -0.8rem rgba(15,18,60,0.12);
-  --shadow-teal: 0 1.2rem 3rem -0.8rem rgba(0,169,145,0.45);
-  --ring: 0 0 0 0.3rem rgba(0,169,145,0.22);
-
-  /* — Motion — */
-  --fast: 140ms; --normal: 280ms; --slow: 560ms;
+  --fast: 200ms; --normal: 280ms;
   --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -68,272 +45,186 @@
 * { box-sizing: border-box; }
 html { font-size: 62.5%; -webkit-text-size-adjust: 100%; }
 body {
-  margin: 0;
-  font-family: var(--font);
-  font-size: var(--fs-body);
-  line-height: 1.6;
-  color: var(--ink);
-  background: var(--bg-page);
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  margin: 0; font-family: var(--font); font-size: 1.6rem; line-height: 1.5;
+  color: var(--ink); background: var(--ap-offwhite);
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
 }
 
-/* ---- Section shell ---------------------------------------------------- */
-.mf-section {
-  display: flex;
-  justify-content: center;
-  padding: clamp(3.2rem, 2rem + 5vw, 7rem) clamp(1.6rem, 1rem + 3vw, 3rem);   /* 30px gutters → card hits 1220px like Svea */
-}
+/* ---- Section shell (Svea LayoutContainer: max-width 1220, padding 1rem) ---- */
+.mf-section { display: flex; justify-content: center; padding: clamp(2.4rem, 1rem + 4vw, 6rem) clamp(1.2rem, 0.6rem + 2vw, 2.4rem); }
 
-/* ---- The card --------------------------------------------------------- */
+/* ---- Card (Svea MainContent: grid 1fr 1fr, radius 15px, gap 0, height auto) - */
 .mf-card {
-  width: 100%;
-  max-width: 122rem;                 /* measured: Svea card = 1220px */
-  min-height: 82.8rem;               /* measured: Svea card = 828px */
-  background: var(--bg-surface);
-  border-radius: 1.5rem;             /* measured: Svea radius = 15px */
-  box-shadow: var(--shadow-3);
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr 1fr;    /* measured: Svea = 50/50 */
-  opacity: 0;
-  transform: translateY(1.4rem);
-  animation: mf-fade var(--slow) var(--ease-out) forwards;
+  width: 100%; max-width: 122rem;
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-radius: var(--r-card); overflow: hidden;
+  box-shadow: 0 2rem 5rem -1.6rem rgba(15,18,60,0.18);   /* subtle — Svea itself has none */
+  opacity: 0; transform: translateY(1.2rem);
+  animation: mf-fade 0.5s var(--ease-out) forwards;
 }
 @keyframes mf-fade { to { opacity: 1; transform: none; } }
 
 /* ============================================================================
-   LEFT — the photo pane
+   LEFT — photo pane
    ============================================================================ */
 .mf-photo {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  min-height: 62rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: var(--s-6);
-  padding: clamp(3rem, 2rem + 2.4vw, 4.4rem);
+  position: relative; isolation: isolate; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 4rem 3.4rem;
   color: var(--on-dark);
 }
-.mf-photo__img {
-  position: absolute; inset: 0; z-index: -2;
-  width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%;
-}
-.mf-photo::after {
-  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background:
-    linear-gradient(180deg, rgba(6,8,30,0.46) 0%, rgba(6,8,30,0) 20%, rgba(6,8,30,0) 42%, rgba(6,8,30,0.60) 74%, rgba(5,6,24,0.92) 100%),
-    radial-gradient(70% 50% at 80% -10%, rgba(0,169,145,0.28), transparent 60%);
-}
+.mf-photo__img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; }
+.mf-photo::after { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(6,8,26,0.52); }  /* Svea: flat overlay, no gradient */
 
-.mf-photo__logo { position: relative; display: flex; align-items: center; gap: 0.9rem; }
-.mf-photo__logoimg { height: 2.7rem; width: auto; display: block; filter: drop-shadow(0 1px 4px rgba(0,0,0,0.45)); }
+/* logo — absolute top-left corner (Svea: top 29 / left 26) */
+.mf-photo__logo { position: absolute; top: 2.9rem; left: 2.9rem; z-index: 5; }
+.mf-photo__logoimg { height: 2.4rem; width: auto; display: block; filter: drop-shadow(0 1px 4px rgba(0,0,0,0.5)); }
 
-.mf-photo__body { position: relative; display: flex; flex-direction: column; gap: var(--s-5); }
+/* content block: left-aligned, sitting slightly above vertical centre */
+.mf-photo__body { position: relative; display: flex; flex-direction: column; align-items: flex-start; text-align: left; margin-bottom: 9%; gap: 1.6rem; }
 
-.mf-photo__quote {                     /* measured: Svea 28px, weight 500 */
-  margin: 0;
-  font-family: var(--font-serif);
-  font-size: clamp(2.2rem, 1.9rem + 1vw, 2.8rem);
-  font-weight: var(--w-med);
-  line-height: 1.35;
-  color: #fff;
-  text-wrap: balance;
-  text-shadow: 0 2px 14px rgba(0,0,0,0.4);
+.mf-photo__quote {
+  margin: 0; font-family: var(--font);
+  font-size: clamp(2.6rem, 1.9rem + 2.2vw, 3.6rem);   /* larger than Svea's 32px — the focus, per owner */
+  font-weight: var(--w-semi); line-height: 1.18; letter-spacing: -0.01em;
+  color: #fff; text-wrap: balance; text-shadow: 0 2px 16px rgba(0,0,0,0.35); max-width: 20ch;
 }
 
-.mf-photo__rating { display: inline-flex; align-items: center; gap: 1rem; text-decoration: none; }
-.mf-photo__stars { display: inline-flex; gap: 0.25rem; color: #ffc24b; }
-.mf-photo__stars svg { width: 1.9rem; height: 1.9rem; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.35)); }
-.mf-photo__rating-txt { font-size: var(--fs-sm); color: var(--on-dark); }
+.mf-photo__rating { display: inline-flex; align-items: center; gap: 0.9rem; text-decoration: none; }
+.mf-photo__stars { display: inline-flex; gap: 0.2rem; color: #ffc24b; }
+.mf-photo__stars svg { width: 1.8rem; height: 1.8rem; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4)); }
+.mf-photo__rating-txt { font-size: 1.4rem; font-weight: var(--w-light); color: var(--on-dark); }
 .mf-photo__rating-txt strong { font-weight: var(--w-semi); color: #fff; }
 .mf-photo__rating:hover .mf-photo__rating-txt { text-decoration: underline; }
 
-.mf-photo__vol { margin: -1rem 0 0; font-size: var(--fs-sm); color: var(--on-dark-muted); }
+.mf-photo__vol { margin: 0; font-size: 1.5rem; font-weight: var(--w-light); color: var(--on-dark-muted); }
 .mf-photo__vol strong { color: #fff; font-weight: var(--w-semi); }
 
+/* 3-step row (Svea: horizontal 3-up, filled white icons ~20px, centered labels 14px/500, NO divider) */
 .mf-photo__steps {
-  list-style: none; margin: 0.4rem 0 0; padding: var(--s-5) 0 0;
-  border-top: 1px solid var(--on-dark-line);
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4);
+  list-style: none; margin: 1.2rem 0 0; padding: 0; width: 100%;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;
 }
-.mf-photo__step { display: flex; flex-direction: column; gap: 0.8rem; }
-.mf-photo__step svg { width: 2.2rem; height: 2.2rem; color: var(--ap-teal-bright); filter: drop-shadow(0 1px 3px rgba(0,0,0,0.35)); }
-.mf-photo__step span { font-size: 1.3rem; line-height: 1.35; color: var(--on-dark); }
+.mf-photo__step { display: grid; justify-items: center; text-align: center; gap: 0.9rem; }
+.mf-photo__step svg { width: 2.2rem; height: 2.2rem; color: #fff; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.4)); }
+.mf-photo__step span { font-size: 1.4rem; font-weight: var(--w-med); line-height: 1.35; color: #fff; }
 
 /* ============================================================================
-   RIGHT — the form pane (white)
+   RIGHT — form pane (Svea: bg #fff, top-aligned, padding ~64/48, header mb 32)
    ============================================================================ */
 .mf-form-pane {
-  padding: clamp(3.2rem, 2rem + 3vw, 5rem) clamp(2.6rem, 1.8rem + 2.5vw, 5rem);
-  display: flex; flex-direction: column; justify-content: center;   /* vertically centered in the 828px card, like Svea */
+  background: #fff; display: flex; flex-direction: column;
+  padding: clamp(3.2rem, 2rem + 3vw, 5.6rem) clamp(2.4rem, 1.6rem + 2vw, 4.4rem);
 }
 
-.mf-head { text-align: center; margin-bottom: var(--s-6); }
-.mf-head__h {                          /* measured: Svea 20→24px, weight 500, #4d4d4d */
-  font-family: var(--font-serif);
-  font-size: clamp(2.1rem, 1.9rem + 0.5vw, 2.5rem);
-  font-weight: var(--w-med);
-  line-height: 1.35; letter-spacing: 0;
-  color: var(--ink-serif); margin: 0; text-wrap: balance;
+.mf-head { text-align: center; display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 3.2rem; }
+.mf-head__h {                                    /* Svea: 24px / 500 / #4d4d4d / lh 1.35 */
+  margin: 0; font-size: clamp(2.1rem, 1.8rem + 0.6vw, 2.4rem);
+  font-weight: var(--w-med); line-height: 1.35; color: var(--ink-head);
 }
-.mf-head__p {                          /* measured: Svea 16→18px, weight 200, #4d4d4d */
-  font-family: var(--font-serif);
-  font-size: clamp(1.6rem, 1.5rem + 0.3vw, 1.8rem);
-  font-weight: var(--w-light);
-  color: var(--ink-serif); line-height: 1.4;
-  margin: var(--s-4) auto 0; max-width: 40rem; text-wrap: balance;
+.mf-head__p {                                    /* Svea: 16-18px / 200 / #4d4d4d / lh 1.27 */
+  margin: 0; font-size: clamp(1.6rem, 1.5rem + 0.3vw, 1.8rem);
+  font-weight: var(--w-light); line-height: 1.3; color: var(--ink-head);
+  max-width: 40rem; margin-inline: auto;
 }
 
-/* form grid */
-.mf-form { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); }
-.mf-field { display: flex; flex-direction: column; gap: 0.8rem; }
+/* form grid — Svea: 2-col ≥400px container, gap 24px row / 32px col */
+.mf-form { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4rem 3.2rem; }
+.mf-field { display: flex; flex-direction: column; gap: 0.8rem; }         /* Svea label→input gap 8px */
 .mf-field--full { grid-column: 1 / -1; }
 
-.mf-label { font-size: 1.4rem; font-weight: var(--w-med); color: var(--ink); }   /* measured: Svea 14px / 500 */
-.mf-label .opt { color: var(--ink-faint); font-weight: var(--w-reg); }
+.mf-label { font-size: 1.4rem; font-weight: var(--w-med); color: var(--ink-head); }
 
-.mf-input, .mf-select, .mf-textarea {                    /* measured: Svea #f7f7f7, 2px border, 16x18 padding, 8px radius */
+.mf-input, .mf-textarea {
   width: 100%; font-family: var(--font); font-size: 1.6rem; color: var(--ink);
-  background: var(--field-bg); border: 2px solid transparent; border-radius: var(--r-sm);
-  padding: 1.6rem 1.8rem; line-height: 1.2;
-  transition: border-color var(--fast) var(--ease), background var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
-  -webkit-appearance: none; appearance: none;
+  background: var(--field-bg); border: 2px solid transparent; border-radius: var(--r-input);
+  padding: 1.6rem 1.8rem; line-height: 1.2;                                /* Svea 16x18 */
+  transition: border-color var(--fast) var(--ease); -webkit-appearance: none; appearance: none;
 }
-.mf-input::placeholder, .mf-textarea::placeholder { color: var(--ink-faint); }
-.mf-input:hover, .mf-select:hover, .mf-textarea:hover { background: var(--field-bg-2); }
-.mf-input:focus, .mf-select:focus, .mf-textarea:focus {
-  outline: none; background: #fff; border-color: var(--ap-teal); box-shadow: var(--ring);
-}
-.mf-textarea { resize: vertical; min-height: 8.4rem; }
+.mf-input::placeholder, .mf-textarea::placeholder { color: #999; }
+.mf-input:focus, .mf-textarea:focus { outline: none; border-color: var(--ap-teal); }   /* Svea uses #000; we keep brand teal */
+.mf-textarea { resize: vertical; min-height: 7.6rem; }
 
-.mf-select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23565e82' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 1.3rem center; background-size: 1.8rem;
-  padding-right: 4rem; cursor: pointer;
-}
-
-/* validation states */
-.mf-input.is-valid, .mf-textarea.is-valid { border-color: rgba(31,157,107,0.55); }
-.mf-input.is-invalid, .mf-select.is-invalid, .mf-textarea.is-invalid { border-color: var(--danger); background: #fff; }
-.mf-feedback { font-size: 1.3rem; color: var(--danger); display: none; align-items: center; gap: 0.5rem; }
+.mf-input.is-valid, .mf-textarea.is-valid { border-color: rgba(31,157,107,0.5); }
+.mf-input.is-invalid, .mf-textarea.is-invalid { border-color: var(--danger); }
+.mf-feedback { font-size: 1.3rem; color: var(--danger); display: none; align-items: center; gap: 0.5rem; margin-top: 0.2rem; }
 .mf-field.has-error .mf-feedback { display: flex; }
 .mf-feedback svg { width: 1.4rem; height: 1.4rem; flex: 0 0 auto; }
 
-/* ---- Address autocomplete -------------------------------------------- */
+/* ---- Address (Svea: bg #f4f4f5, manual-link top-right #545454 13px) --------- */
 .mf-addr { position: relative; }
-.mf-addr__label-row { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-3); }
-.mf-addr__manual {
-  font-size: 1.3rem; color: var(--ap-teal); background: none; border: 0; padding: 0;
-  cursor: pointer; text-decoration: underline; text-underline-offset: 2px; font-family: var(--font);
-}
-.mf-addr__manual:hover { color: var(--ap-teal-bright); }
+.mf-addr__label-row { display: flex; align-items: baseline; justify-content: space-between; gap: 1.2rem; }
+.mf-addr__manual { font-size: 1.3rem; color: var(--addr-link); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; font-family: var(--font); }
+.mf-addr__manual:hover { color: var(--ink-head); }
 .mf-addr__input-wrap { position: relative; }
-.mf-addr__input-wrap .mf-addr-icon {
-  position: absolute; left: 1.3rem; top: 50%; transform: translateY(-50%);
-  width: 1.8rem; height: 1.8rem; color: var(--ink-faint); pointer-events: none;
-}
-.mf-addr__input-wrap .mf-input { padding-left: 4rem; }
-.mf-addr__list {
-  position: absolute; z-index: 20; left: 0; right: 0; top: calc(100% + 0.6rem);
-  background: #fff; border: 1px solid var(--line); border-radius: var(--r-sm);
-  box-shadow: var(--shadow-3); overflow: hidden; max-height: 26rem; overflow-y: auto; display: none;
-}
+.mf-addr__input-wrap .mf-addr-icon { position: absolute; left: 1.6rem; top: 50%; transform: translateY(-50%); width: 1.8rem; height: 1.8rem; color: #999; pointer-events: none; }
+.mf-addr__input-wrap .mf-input { padding-left: 4.4rem; background: var(--addr-bg); border-color: var(--addr-bg); }
+.mf-addr__input-wrap .mf-input:focus { border-color: var(--ap-teal); background: #fff; }
+.mf-addr__list { position: absolute; z-index: 20; left: 0; right: 0; top: calc(100% + 0.6rem); background: #fff; border: 1px solid rgba(15,18,60,0.1); border-radius: var(--r-input); box-shadow: 0 2rem 4rem -1rem rgba(15,18,60,0.2); overflow: hidden; max-height: 26rem; overflow-y: auto; display: none; }
 .mf-addr__list.show { display: block; }
-.mf-addr__opt {
-  display: flex; align-items: center; gap: 1rem; width: 100%; text-align: left;
-  padding: 1.1rem 1.4rem; font-size: 1.5rem; color: var(--ink); background: none; border: 0;
-  cursor: pointer; font-family: var(--font); border-bottom: 1px solid var(--line);
-}
+.mf-addr__opt { display: flex; align-items: center; gap: 1rem; width: 100%; text-align: left; padding: 1.1rem 1.4rem; font-size: 1.5rem; color: var(--ink); background: none; border: 0; cursor: pointer; font-family: var(--font); border-bottom: 1px solid rgba(15,18,60,0.08); }
 .mf-addr__opt:last-child { border-bottom: 0; }
 .mf-addr__opt:hover, .mf-addr__opt.active { background: var(--field-bg); }
 .mf-addr__opt svg { width: 1.6rem; height: 1.6rem; color: var(--ap-teal); flex: 0 0 auto; }
 .mf-addr__opt mark { background: none; color: var(--ap-teal); font-weight: var(--w-semi); }
-.mf-addr__opt small { color: var(--ink-faint); }
-.mf-addr__hint { font-size: 1.25rem; color: var(--ink-faint); margin-top: 0.5rem; }
-.mf-addr__mock-tag {
-  display: inline-flex; align-items: center; gap: 0.4rem; font-size: 1.1rem; color: var(--ink-faint);
-  border: 1px dashed var(--line-strong); border-radius: var(--r-pill); padding: 0.2rem 0.8rem; margin-left: 0.6rem;
-}
-.mf-manual-fields { display: none; grid-column: 1 / -1; gap: var(--s-4); grid-template-columns: 1fr 1fr; }
+.mf-addr__opt small { color: #999; }
+.mf-manual-fields { display: none; grid-column: 1 / -1; gap: 2.4rem 3.2rem; grid-template-columns: 1fr 1fr; }
 .mf-manual-fields.show { display: grid; }
 .mf-addr__confirmed { display: none; align-items: center; gap: 0.7rem; margin-top: 0.6rem; font-size: 1.35rem; color: var(--ok); font-weight: var(--w-med); }
 .mf-addr__confirmed.show { display: flex; }
 .mf-addr__confirmed svg { width: 1.6rem; height: 1.6rem; }
 
-/* ---- Interest chips --------------------------------------------------- */
-.mf-chips { display: flex; flex-wrap: wrap; gap: var(--s-3); }
-.mf-chip {
-  position: relative; display: inline-flex; align-items: center; gap: 0.8rem;
-  padding: 1rem 1.5rem 1rem 1.2rem; border-radius: var(--r-pill);
-  background: var(--field-bg); border: 1.5px solid transparent; cursor: pointer;
-  font-size: 1.5rem; font-weight: var(--w-med); color: var(--ink);
-  transition: all var(--fast) var(--ease); user-select: none;
-}
-.mf-chip:hover { background: var(--field-bg-2); }
-.mf-chip input { position: absolute; opacity: 0; width: 0; height: 0; }
-.mf-chip__ico { width: 2rem; height: 2rem; color: var(--ink-muted); transition: color var(--fast) var(--ease); flex: 0 0 auto; }
-.mf-chip__ico svg { width: 100%; height: 100%; }
-.mf-chip__check { width: 1.7rem; height: 1.7rem; opacity: 0; margin-left: -0.2rem; transform: scale(0.6); transition: all var(--fast) var(--ease-out); color: var(--ap-teal); }
-.mf-chip.active { background: rgba(0,169,145,0.09); border-color: var(--ap-teal); color: var(--ink); }
-.mf-chip.active .mf-chip__ico { color: var(--ap-teal); }
-.mf-chip.active .mf-chip__check { opacity: 1; transform: scale(1); }
-.mf-chip:focus-within { box-shadow: var(--ring); }
-
-/* ---- Submit + consent (Svea gradient pill, in Ampy teal) -------------- */
-.mf-actions { grid-column: 1 / -1; margin-top: var(--s-3); }
+/* ---- Submit (Svea: 100%, pill 99px, padding 16/32; Ampy teal gradient) ------ */
+.mf-actions { grid-column: 1 / -1; margin-top: 0.8rem; }
 .mf-submit {
   position: relative; width: 100%; display: inline-flex; align-items: center; justify-content: center;
-  gap: 1rem; font-family: var(--font); font-size: 1.8rem; font-weight: var(--w-semi);
-  color: #fff; border: 0; border-radius: var(--r-pill); padding: 1.7rem 3.2rem; cursor: pointer;
+  gap: 0.8rem; font-family: var(--font); font-size: 1.6rem; font-weight: var(--w-semi);
+  color: #fff; border: 0; border-radius: var(--r-pill); padding: 1.6rem 3.2rem; cursor: pointer;
   background: linear-gradient(100deg, #009e88 0%, #00b597 52%, #17c6a0 100%);
-  box-shadow: var(--shadow-teal);
-  transition: transform var(--fast) var(--ease), filter var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
+  box-shadow: 0 1rem 2.4rem -0.8rem rgba(0,169,145,0.45);
+  transition: transform var(--fast) var(--ease), filter var(--fast) var(--ease);
 }
-.mf-submit:hover { filter: brightness(1.06); transform: translateY(-2px); box-shadow: 0 1.6rem 3.4rem -0.8rem rgba(0,169,145,0.5); }
+.mf-submit:hover { filter: brightness(1.06); transform: translateY(-1px); }
 .mf-submit:active { transform: translateY(0); }
-.mf-submit svg { width: 2rem; height: 2rem; transition: transform var(--fast) var(--ease); }
+.mf-submit svg { width: 1.9rem; height: 1.9rem; transition: transform var(--fast) var(--ease); }
 .mf-submit:hover svg { transform: translateX(4px); }
 .mf-submit[disabled] { opacity: 0.7; cursor: default; transform: none; }
 .mf-submit.is-loading .mf-submit__label, .mf-submit.is-loading svg { visibility: hidden; }
-.mf-submit__spin { display: none; position: absolute; width: 2.2rem; height: 2.2rem; border: 2.5px solid rgba(255,255,255,0.4); border-top-color: #fff; border-radius: 50%; animation: mf-spin 0.7s linear infinite; }
+.mf-submit__spin { display: none; position: absolute; width: 2rem; height: 2rem; border: 2.5px solid rgba(255,255,255,0.4); border-top-color: #fff; border-radius: 50%; animation: mf-spin 0.7s linear infinite; }
 .mf-submit.is-loading .mf-submit__spin { display: block; }
 @keyframes mf-spin { to { transform: rotate(360deg); } }
 
-.mf-consent { grid-column: 1 / -1; text-align: center; font-size: 1.3rem; color: var(--ink-faint); line-height: 1.55; margin-top: var(--s-3); }
-.mf-consent a { color: var(--ink-muted); text-decoration: underline; text-underline-offset: 2px; }
-.mf-consent a:hover { color: var(--ap-teal); }
+.mf-consent { grid-column: 1 / -1; text-align: center; font-size: 1.2rem; font-weight: var(--w-light); color: var(--consent); line-height: 1.6; margin-top: 1.6rem; }
+.mf-consent a { color: var(--consent); text-decoration: none; }
+.mf-consent a:hover { text-decoration: underline; }
 
-/* ---- In-place success ------------------------------------------------- */
+/* ---- In-place success ------------------------------------------------------ */
 .mf-form.is-hidden { display: none; }
-.mf-success { display: none; flex-direction: column; align-items: center; text-align: center; gap: var(--s-4); padding: var(--s-7) var(--s-2); margin: auto 0; }
+.mf-success { display: none; flex-direction: column; align-items: center; text-align: center; gap: 1.6rem; padding: 4rem 0; margin: auto 0; }
 .mf-success.show { display: flex; animation: mf-fade var(--normal) var(--ease-out) both; }
-.mf-success__ico { width: 7.2rem; height: 7.2rem; border-radius: 50%; display: grid; place-items: center; background: rgba(57,194,129,0.12); color: var(--ap-green); }
-.mf-success__ico svg { width: 3.6rem; height: 3.6rem; }
-.mf-success__h { font-family: var(--font-serif); font-size: clamp(2.4rem, 2rem + 1vw, 3rem); font-weight: var(--w-med); color: var(--ink); margin: 0; }
-.mf-success__p { font-size: 1.8rem; color: var(--ink-muted); max-width: 40rem; margin: 0; }
-.mf-success__meta { font-size: var(--fs-sm); color: var(--ink-faint); }
+.mf-success__ico { width: 6.4rem; height: 6.4rem; border-radius: 50%; display: grid; place-items: center; background: rgba(57,194,129,0.12); color: var(--ap-green); }
+.mf-success__ico svg { width: 3.2rem; height: 3.2rem; }
+.mf-success__h { font-size: 2.2rem; font-weight: var(--w-semi); color: var(--ink-head); margin: 0; }
+.mf-success__p { font-size: 1.6rem; color: var(--consent); max-width: 38rem; margin: 0; }
+.mf-success__meta { font-size: 1.4rem; color: var(--ink-faint); }
 
 /* ============================================================================
-   Responsive — stack: photo banner on top, form below (like Svea mobile)
+   Responsive — Svea switches at 768px; below it stacks (photo banner → form)
    ============================================================================ */
-@media (max-width: 900px) {
-  .mf-card { grid-template-columns: 1fr; }
-  .mf-photo { min-height: 42rem; }
-  .mf-photo__quote { font-size: clamp(2rem, 1.6rem + 2vw, 2.5rem); }
+@media (max-width: 768px) {
+  .mf-card { grid-template-columns: 1fr; box-shadow: 0 1.2rem 3rem -1rem rgba(15,18,60,0.16); }
+  .mf-photo { min-height: auto; padding: 7.2rem 2.6rem 3.4rem; justify-content: flex-start; }
+  .mf-photo__body { margin-bottom: 0; }
+  .mf-photo__logo { top: 2.6rem; left: 2.6rem; }
+  .mf-photo__quote { font-size: clamp(2.2rem, 1.7rem + 2.4vw, 2.8rem); }
+  .mf-form-pane { padding: 3.2rem 2rem; }
 }
-
-@media (max-width: 560px) {
+@media (max-width: 460px) {
   .mf-form { grid-template-columns: 1fr; }
   .mf-field--half { grid-column: 1 / -1; }
   .mf-manual-fields { grid-template-columns: 1fr; }
-  .mf-photo { min-height: 38rem; padding: 2.6rem 2.2rem; }
-  .mf-photo__steps { gap: var(--s-3); }
-  .mf-photo__step span { font-size: 1.2rem; }
-  .mf-chips { gap: var(--s-2); }
-  .mf-chip { font-size: 1.4rem; padding: 0.9rem 1.3rem 0.9rem 1rem; }
+  .mf-photo__steps { gap: 0.8rem; }
+  .mf-photo__step span { font-size: 1.25rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

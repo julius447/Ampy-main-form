@@ -83,34 +83,31 @@
         <!-- 1. Förnamn | Efternamn -->
         <div class="mf-field mf-field--half" data-validate="forenamn">
           <label class="mf-label" for="mf_forenamn">Förnamn</label>
-          <input class="mf-input" id="mf_forenamn" name="forenamn" type="text" placeholder="Anna" autocomplete="given-name" required>
+          <input class="mf-input" id="mf_forenamn" name="forenamn" type="text" placeholder="Johan" autocomplete="given-name" required>
           <span class="mf-feedback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 8v5"/><path d="M12 16h.01"/></svg><span>Fyll i ditt förnamn.</span></span>
         </div>
         <div class="mf-field mf-field--half" data-validate="efternamn">
           <label class="mf-label" for="mf_efternamn">Efternamn</label>
-          <input class="mf-input" id="mf_efternamn" name="efternamn" type="text" placeholder="Andersson" autocomplete="family-name" required>
+          <input class="mf-input" id="mf_efternamn" name="efternamn" type="text" placeholder="Svensson" autocomplete="family-name" required>
           <span class="mf-feedback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 8v5"/><path d="M12 16h.01"/></svg><span>Fyll i ditt efternamn.</span></span>
         </div>
 
         <!-- 2. E-post | Telefonnummer -->
         <div class="mf-field mf-field--half" data-validate="email">
           <label class="mf-label" for="mf_email">E-post</label>
-          <input class="mf-input" id="mf_email" name="email" type="email" placeholder="anna@exempel.se" autocomplete="email" required>
+          <input class="mf-input" id="mf_email" name="email" type="email" placeholder="namn@email.se" autocomplete="email" required>
           <span class="mf-feedback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 8v5"/><path d="M12 16h.01"/></svg><span>Dubbelkolla e-postadressen &ndash; något ser fel ut.</span></span>
         </div>
         <div class="mf-field mf-field--half" data-validate="phone">
           <label class="mf-label" for="mf_telefon">Telefonnummer</label>
-          <input class="mf-input" id="mf_telefon" name="telefon" type="tel" placeholder="070&ndash;123 45 67" autocomplete="tel" required>
+          <input class="mf-input" id="mf_telefon" name="telefon" type="tel" placeholder="076 xxx xx xx" autocomplete="tel" required>
           <span class="mf-feedback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 8v5"/><path d="M12 16h.01"/></svg><span>Vi behöver ett nummer att ringa dig på.</span></span>
         </div>
 
         <!-- 4. Adress — autocomplete (mock) + manuellt fallback -->
         <div class="mf-field mf-field--full mf-addr" data-validate="address">
           <div class="mf-addr__label-row">
-            <label class="mf-label" for="mf_adress_sok">
-              Adress
-              <span class="mf-addr__mock-tag" title="Prototyp: mockad sökning. Byt mot adress-API i produktion.">mock-sök</span>
-            </label>
+            <label class="mf-label" for="mf_adress_sok">Adress</label>
             <button type="button" class="mf-addr__manual" id="mfAddrManual">Ange adress manuellt</button>
           </div>
           <div class="mf-addr__input-wrap">
@@ -120,7 +117,6 @@
           </div>
           <span class="mf-addr__confirmed" id="mfAddrConfirmed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span></span></span>
           <span class="mf-feedback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 8v5"/><path d="M12 16h.01"/></svg><span>Välj din adress i listan eller ange den manuellt.</span></span>
-          <span class="mf-addr__hint">Vi använder adressen för postnummer och för att se att du är inom vårt område.</span>
         </div>
 
         <!-- manual address fields (revealed by "Ange adress manuellt") -->
@@ -141,8 +137,8 @@
 
         <!-- 4. Meddelande (Svea's "produkter"-slot → free text, per owner) -->
         <div class="mf-field mf-field--full">
-          <label class="mf-label" for="mf_meddelande">Meddelande <span class="opt">(valfritt)</span></label>
-          <textarea class="mf-textarea" id="mf_meddelande" name="meddelande" placeholder="Beskriv gärna kort vad du behöver hjälp med."></textarea>
+          <label class="mf-label" for="mf_meddelande">Meddelande</label>
+          <textarea class="mf-textarea" id="mf_meddelande" name="meddelande" placeholder="Valfritt meddelande"></textarea>
         </div>
 
         <div class="mf-actions">
