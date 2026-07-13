@@ -1,0 +1,3 @@
+(Owner-provided verbatim export of the CURRENT live ampy.se/offert form — the
+structural template our redesign JSON must mirror. Pasted in the chat; see the
+Picasso components/main-form/ampy/current-form.bricks.json for the same data.)

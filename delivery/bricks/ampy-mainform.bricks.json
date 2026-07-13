@@ -1,0 +1,1078 @@
+{
+  "content": [
+    {
+      "id": "mfin01",
+      "name": "section",
+      "parent": 0,
+      "children": [],
+      "settings": [],
+      "label": "Main contact",
+      "cid": "mfsec1"
+    }
+  ],
+  "source": "bricksCopiedElements",
+  "sourceUrl": "https://ampy.se",
+  "version": "2.3.9",
+  "components": [
+    {
+      "id": "mfsec1",
+      "category": "",
+      "desc": "Main contact section wrapper (bg #f5f9ff)",
+      "elements": [
+        {
+          "id": "mfsec1",
+          "name": "section",
+          "parent": 0,
+          "children": [
+            "mfcref"
+          ],
+          "settings": {
+            "_background": {
+              "color": {
+                "hex": "#f5f9ff",
+                "id": "wrqruq",
+                "name": "Color #20"
+              }
+            },
+            "_padding": {
+              "top": "var(--apspace-2xl)",
+              "bottom": "var(--apspace-2xl)",
+              "right": "var(--apspace-m)",
+              "left": "var(--apspace-m)"
+            },
+            "_padding:tablet_portrait": {
+              "top": "var(--apspace-l)",
+              "right": "var(--apspace-l)",
+              "bottom": "var(--apspace-l)",
+              "left": "var(--apspace-l)"
+            },
+            "_padding:mobile_portrait": {
+              "top": "var(--apspace-l)",
+              "right": "var(--apspace-xs)",
+              "bottom": "var(--apspace-l)",
+              "left": "var(--apspace-xs)"
+            }
+          },
+          "label": "Main contact"
+        },
+        {
+          "id": "mfcref",
+          "name": "container",
+          "parent": "mfsec1",
+          "children": [],
+          "settings": [],
+          "cid": "mfcont"
+        }
+      ],
+      "properties": [],
+      "_created": 1784000000,
+      "_user_id": 13,
+      "_version": "2.2"
+    },
+    {
+      "id": "mfcont",
+      "category": "",
+      "desc": "Redesigned main contact form — photo pane (logo, testimonial, Google rating, volume, 3 steps) + white form pane (native Bricks form → n8n webhook) + engine code element",
+      "elements": [
+        {
+          "id": "mfcont",
+          "name": "container",
+          "parent": 0,
+          "children": [
+            "mfphot",
+            "mffrmb"
+          ],
+          "settings": {
+            "_alignItems": "stretch",
+            "_direction": "row",
+            "_background": {
+              "color": {
+                "hex": "#ffffff",
+                "id": "azmjkv",
+                "name": "Color #19"
+              }
+            },
+            "_border": {
+              "radius": {
+                "top": "var(--apradius-l)",
+                "right": "var(--apradius-l)",
+                "bottom": "var(--apradius-l)",
+                "left": "var(--apradius-l)"
+              }
+            },
+            "_border:mobile_portrait": {
+              "radius": {
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0"
+              }
+            },
+            "_widthMax": "1220px",
+            "_widthMax:mobile_portrait": "100%",
+            "_widthMax:mobile_landscape": "100%",
+            "_widthMax:tablet_portrait": "100%",
+            "_overflow": "hidden",
+            "_interactions": [
+              {
+                "id": "bkzxtj",
+                "trigger": "enterView",
+                "action": "startAnimation",
+                "animationType": "fadeIn"
+              }
+            ],
+            "_attributes": [
+              {
+                "id": "mfa001",
+                "name": "data-mf",
+                "value": "card"
+              }
+            ]
+          },
+          "label": "Global Form"
+        },
+        {
+          "id": "mfphot",
+          "name": "block",
+          "parent": "mfcont",
+          "children": [
+            "mflogo",
+            "mfbody",
+            "mfstpb"
+          ],
+          "settings": {
+            "tag": "div",
+            "_display": "flex",
+            "_direction": "column",
+            "_justifyContent": "space-between",
+            "_alignItems": "center",
+            "_alignSelf": "stretch",
+            "_overflow": "hidden",
+            "_rowGap": "var(--apspace-l)",
+            "_padding": {
+              "top": "var(--apspace-2xl)",
+              "bottom": "var(--apspace-2xl)",
+              "right": "var(--apspace-l)",
+              "left": "var(--apspace-l)"
+            },
+            "_padding:mobile_portrait": {
+              "top": "var(--apspace-4xl)",
+              "bottom": "var(--apspace-4xl)",
+              "right": "var(--apspace-l)",
+              "left": "var(--apspace-l)"
+            },
+            "_border": {
+              "radius": {
+                "left": "var(--apradius-l)",
+                "top": "var(--apradius-l)"
+              }
+            },
+            "_background": {
+              "position": "custom",
+              "positionX": "50%",
+              "positionY": "52%",
+              "image": {
+                "id": 51991,
+                "filename": "form-image-1.webp",
+                "size": "full",
+                "full": "https://ampy.se/wp-content/uploads/form-image-1.webp",
+                "url": "https://ampy.se/wp-content/uploads/form-image-1.webp"
+              }
+            },
+            "_gradient": {
+              "applyTo": "overlay",
+              "colors": [
+                {
+                  "id": "wdiapw",
+                  "color": {
+                    "hex": "#06081a",
+                    "rgb": "rgba(6, 8, 26, 0.55)",
+                    "hsl": "hsla(231, 62%, 6%, 0.55)"
+                  }
+                }
+              ]
+            },
+            "_attributes": [
+              {
+                "id": "mfa002",
+                "name": "data-mf",
+                "value": "photo"
+              }
+            ]
+          },
+          "label": "Photo pane"
+        },
+        {
+          "id": "mflogo",
+          "name": "image",
+          "parent": "mfphot",
+          "children": [],
+          "settings": {
+            "image": {
+              "filename": "ampy-logo-white.png",
+              "size": "full",
+              "full": "https://ampy.se/wp-content/uploads/ampy-logo-white.png",
+              "url": "https://ampy.se/wp-content/uploads/ampy-logo-white.png"
+            },
+            "_widthMax": "125px",
+            "_widthMax:mobile_portrait": "96px",
+            "_margin": {
+              "top": "0",
+              "bottom": "0"
+            },
+            "_attributes": [
+              {
+                "id": "mfa003",
+                "name": "data-mf",
+                "value": "logo"
+              }
+            ]
+          },
+          "themeStyles": []
+        },
+        {
+          "id": "mfbody",
+          "name": "block",
+          "parent": "mfphot",
+          "children": [
+            "mfquot",
+            "mfrato",
+            "mfvol1"
+          ],
+          "settings": {
+            "_display": "flex",
+            "_direction": "column",
+            "_alignItems": "center",
+            "_justifyContent": "center",
+            "_alignSelf": "center",
+            "_rowGap": "var(--apspace-s)",
+            "_widthMax": "52rem",
+            "_textAlign": "center"
+          },
+          "label": "Info"
+        },
+        {
+          "id": "mfquot",
+          "name": "text-basic",
+          "parent": "mfbody",
+          "children": [],
+          "settings": {
+            "tag": "blockquote",
+            "text": "”Från start till mål levererades en service i världsklass.”",
+            "_typography": {
+              "font-size": "clamp(2.6rem, 2rem + 1.5vw, 3.3rem)",
+              "font-weight": "500",
+              "line-height": "1.3",
+              "text-align": "center",
+              "color": {
+                "hex": "#ffffff"
+              }
+            },
+            "_typography:mobile_portrait": {
+              "font-size": "var(--aptext-2-5xl)"
+            },
+            "_attributes": [
+              {
+                "id": "mfa004",
+                "name": "data-mf",
+                "value": "quote"
+              }
+            ]
+          },
+          "label": "Testimonial"
+        },
+        {
+          "id": "mfrato",
+          "name": "div",
+          "parent": "mfbody",
+          "children": [
+            "mfstar",
+            "mfrtxt"
+          ],
+          "settings": {
+            "tag": "a",
+            "_display": "flex",
+            "_direction": "row",
+            "_alignItems": "center",
+            "_justifyContent": "center",
+            "_columnGap": "var(--apspace-2xs)",
+            "link": {
+              "type": "meta",
+              "useDynamicData": "{acf_google_business_profile_url}",
+              "newTab": true
+            },
+            "_attributes": [
+              {
+                "id": "mfa005",
+                "name": "data-mf",
+                "value": "rating"
+              }
+            ]
+          },
+          "label": "Google rating"
+        },
+        {
+          "id": "mfstar",
+          "name": "div",
+          "parent": "mfrato",
+          "children": [
+            "mfst01",
+            "mfst02",
+            "mfst03",
+            "mfst04",
+            "mfst05"
+          ],
+          "settings": {
+            "_display": "flex",
+            "_direction": "row",
+            "_alignItems": "center",
+            "_columnGap": "2",
+            "_attributes": [
+              {
+                "id": "mfa006",
+                "name": "data-mf",
+                "value": "stars"
+              }
+            ]
+          }
+        },
+        {
+          "id": "mfst01",
+          "name": "icon",
+          "parent": "mfstar",
+          "children": [],
+          "settings": {
+            "icon": {
+              "library": "ionicons",
+              "icon": "ion-md-star"
+            },
+            "iconColor": {
+              "hex": "#ffc24b"
+            },
+            "iconSize": "18",
+            "_border": {
+              "style": "none",
+              "width": {
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0"
+              }
+            }
+          },
+          "themeStyles": []
+        },
+        {
+          "id": "mfst02",
+          "name": "icon",
+          "parent": "mfstar",
+          "children": [],
+          "settings": {
+            "icon": {
+              "library": "ionicons",
+              "icon": "ion-md-star"
+            },
+            "iconColor": {
+              "hex": "#ffc24b"
+            },
+            "iconSize": "18",
+            "_border": {
+              "style": "none",
+              "width": {
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0"
+              }
+            }
+          },
+          "themeStyles": []
+        },
+        {
+          "id": "mfst03",
+          "name": "icon",
+          "parent": "mfstar",
+          "children": [],
+          "settings": {
+            "icon": {
+              "library": "ionicons",
+              "icon": "ion-md-star"
+            },
+            "iconColor": {
+              "hex": "#ffc24b"
+            },
+            "iconSize": "18",
+            "_border": {
+              "style": "none",
+              "width": {
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0"
+              }
+            }
+          },
+          "themeStyles": []
+        },
+        {
+          "id": "mfst04",
+          "name": "icon",
+          "parent": "mfstar",
+          "children": [],
+          "settings": {
+            "icon": {
+              "library": "ionicons",
+              "icon": "ion-md-star"
+            },
+            "iconColor": {
+              "hex": "#ffc24b"
+            },
+            "iconSize": "18",
+            "_border": {
+              "style": "none",
+              "width": {
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0"
+              }
+            }
+          },
+          "themeStyles": []
+        },
+        {
+          "id": "mfst05",
+          "name": "icon",
+          "parent": "mfstar",
+          "children": [],
+          "settings": {
+            "icon": {
+              "library": "ionicons",
+              "icon": "ion-md-star"
+            },
+            "iconColor": {
+              "hex": "#ffc24b"
+            },
+            "iconSize": "18",
+            "_border": {
+              "style": "none",
+              "width": {
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0"
+              }
+            }
+          },
+          "themeStyles": []
+        },
+        {
+          "id": "mfrtxt",
+          "name": "text-basic",
+          "parent": "mfrato",
+          "children": [],
+          "settings": {
+            "tag": "span",
+            "text": "{acf_google_rating} · Betyg på Google",
+            "_typography": {
+              "font-size": "var(--aptext-sm)",
+              "font-weight": "300",
+              "line-height": "1.2",
+              "text-align": "left",
+              "color": {
+                "raw": "rgba(255,255,255,0.9)"
+              }
+            },
+            "_typography:mobile_portrait": {
+              "font-size": "var(--aptext-m)"
+            }
+          },
+          "label": "Rating text"
+        },
+        {
+          "id": "mfvol1",
+          "name": "text-basic",
+          "parent": "mfbody",
+          "children": [],
+          "settings": {
+            "tag": "p",
+            "text": "<strong>3 000+</strong> genomförda installationer om året",
+            "_typography": {
+              "font-size": "var(--aptext-m)",
+              "font-weight": "400",
+              "line-height": "1.3",
+              "text-align": "center",
+              "color": {
+                "raw": "rgba(255,255,255,0.9)"
+              }
+            },
+            "_attributes": [
+              {
+                "id": "mfa007",
+                "name": "data-mf",
+                "value": "vol"
+              }
+            ]
+          },
+          "label": "Volume proof"
+        },
+        {
+          "id": "mfstpb",
+          "name": "block",
+          "parent": "mfphot",
+          "children": [
+            "mfsp1",
+            "mfsp2",
+            "mfsp3"
+          ],
+          "settings": {
+            "tag": "ul",
+            "_display": "flex",
+            "_direction": "row",
+            "_justifyContent": "space-between",
+            "_alignItems": "start",
+            "_alignSelf": "stretch",
+            "_columnGap": "var(--apspace-s)",
+            "_widthMax": "100%",
+            "_direction:mobile_portrait": "column",
+            "_rowGap:mobile_portrait": "var(--apspace-s)",
+            "_attributes": [
+              {
+                "id": "mfa008",
+                "name": "data-mf",
+                "value": "steps"
+              }
+            ]
+          },
+          "label": "Steps"
+        },
+        {
+          "id": "mfsp1",
+          "name": "block",
+          "parent": "mfstpb",
+          "children": [
+            "mfsi1",
+            "mfsx1"
+          ],
+          "settings": {
+            "tag": "li",
+            "_display": "flex",
+            "_direction": "column",
+            "_alignItems": "center",
+            "_justifyContent": "start",
+            "_rowGap": "var(--apspace-3xs)",
+            "_direction:mobile_portrait": "row",
+            "_columnGap:mobile_portrait": "var(--apspace-2xs)",
+            "_justifyContent:mobile_portrait": "start",
+            "_attributes": [
+              {
+                "id": "mfa-mfsp1",
+                "name": "data-mf",
+                "value": "step"
+              }
+            ]
+          }
+        },
+        {
+          "id": "mfsi1",
+          "name": "icon",
+          "parent": "mfsp1",
+          "children": [],
+          "settings": {
+            "icon": {
+              "library": "ionicons",
+              "icon": "ion-md-send"
+            },
+            "iconColor": {
+              "hex": "#ffffff"
+            },
+            "iconSize": "22",
+            "_border": {
+              "style": "none",
+              "width": {
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0"
+              }
+            }
+          },
+          "themeStyles": []
+        },
+        {
+          "id": "mfsx1",
+          "name": "text-basic",
+          "parent": "mfsp1",
+          "children": [],
+          "settings": {
+            "tag": "span",
+            "text": "Skicka in dina uppgifter",
+            "_typography": {
+              "font-size": "var(--aptext-sm)",
+              "font-weight": "500",
+              "line-height": "1.35",
+              "text-align": "center",
+              "color": {
+                "hex": "#ffffff"
+              }
+            },
+            "_typography:mobile_portrait": {
+              "text-align": "left"
+            }
+          }
+        },
+        {
+          "id": "mfsp2",
+          "name": "block",
+          "parent": "mfstpb",
+          "children": [
+            "mfsi2",
+            "mfsx2"
+          ],
+          "settings": {
+            "tag": "li",
+            "_display": "flex",
+            "_direction": "column",
+            "_alignItems": "center",
+            "_justifyContent": "start",
+            "_rowGap": "var(--apspace-3xs)",
+            "_direction:mobile_portrait": "row",
+            "_columnGap:mobile_portrait": "var(--apspace-2xs)",
+            "_justifyContent:mobile_portrait": "start",
+            "_attributes": [
+              {
+                "id": "mfa-mfsp2",
+                "name": "data-mf",
+                "value": "step"
+              }
+            ]
+          }
+        },
+        {
+          "id": "mfsi2",
+          "name": "icon",
+          "parent": "mfsp2",
+          "children": [],
+          "settings": {
+            "icon": {
+              "library": "ionicons",
+              "icon": "ion-md-call"
+            },
+            "iconColor": {
+              "hex": "#ffffff"
+            },
+            "iconSize": "22",
+            "_border": {
+              "style": "none",
+              "width": {
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0"
+              }
+            }
+          },
+          "themeStyles": []
+        },
+        {
+          "id": "mfsx2",
+          "name": "text-basic",
+          "parent": "mfsp2",
+          "children": [],
+          "settings": {
+            "tag": "span",
+            "text": "Vi ringer dig inom 24 timmar",
+            "_typography": {
+              "font-size": "var(--aptext-sm)",
+              "font-weight": "500",
+              "line-height": "1.35",
+              "text-align": "center",
+              "color": {
+                "hex": "#ffffff"
+              }
+            },
+            "_typography:mobile_portrait": {
+              "text-align": "left"
+            }
+          }
+        },
+        {
+          "id": "mfsp3",
+          "name": "block",
+          "parent": "mfstpb",
+          "children": [
+            "mfsi3",
+            "mfsx3"
+          ],
+          "settings": {
+            "tag": "li",
+            "_display": "flex",
+            "_direction": "column",
+            "_alignItems": "center",
+            "_justifyContent": "start",
+            "_rowGap": "var(--apspace-3xs)",
+            "_direction:mobile_portrait": "row",
+            "_columnGap:mobile_portrait": "var(--apspace-2xs)",
+            "_justifyContent:mobile_portrait": "start",
+            "_attributes": [
+              {
+                "id": "mfa-mfsp3",
+                "name": "data-mf",
+                "value": "step"
+              }
+            ]
+          }
+        },
+        {
+          "id": "mfsi3",
+          "name": "icon",
+          "parent": "mfsp3",
+          "children": [],
+          "settings": {
+            "icon": {
+              "library": "ionicons",
+              "icon": "ion-md-checkmark-circle-outline"
+            },
+            "iconColor": {
+              "hex": "#ffffff"
+            },
+            "iconSize": "22",
+            "_border": {
+              "style": "none",
+              "width": {
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0"
+              }
+            }
+          },
+          "themeStyles": []
+        },
+        {
+          "id": "mfsx3",
+          "name": "text-basic",
+          "parent": "mfsp3",
+          "children": [],
+          "settings": {
+            "tag": "span",
+            "text": "Kostnadsfri rådgivning av elektriker",
+            "_typography": {
+              "font-size": "var(--aptext-sm)",
+              "font-weight": "500",
+              "line-height": "1.35",
+              "text-align": "center",
+              "color": {
+                "hex": "#ffffff"
+              }
+            },
+            "_typography:mobile_portrait": {
+              "text-align": "left"
+            }
+          }
+        },
+        {
+          "id": "mffrmb",
+          "name": "block",
+          "parent": "mfcont",
+          "children": [
+            "mfhead",
+            "mfpara",
+            "mffrm2",
+            "mfcons",
+            "mfcode"
+          ],
+          "settings": {
+            "tag": "div",
+            "_display": "flex",
+            "_direction": "column",
+            "_alignSelf": "stretch",
+            "_padding": {
+              "top": "var(--apspace-l)",
+              "bottom": "var(--apspace-l)",
+              "right": "var(--apspace-l)",
+              "left": "var(--apspace-l)"
+            },
+            "_boxShadow": {
+              "values": {
+                "offsetX": "0",
+                "offsetY": "0",
+                "blur": "16"
+              },
+              "color": {
+                "rgb": "rgba(190, 190, 190, 0.19)",
+                "hex": "#bebebe",
+                "id": "fvmugm",
+                "name": "Color #49"
+              }
+            },
+            "_attributes": [
+              {
+                "id": "mfa009",
+                "name": "data-mf",
+                "value": "formpane"
+              }
+            ]
+          },
+          "label": "Form pane"
+        },
+        {
+          "id": "mfhead",
+          "name": "heading",
+          "parent": "mffrmb",
+          "children": [],
+          "settings": {
+            "text": "Få en kostnadsfri rådgivning",
+            "_typography": {
+              "font-size": "var(--aptext-xl)",
+              "font-weight": "500",
+              "line-height": "1.2",
+              "text-align": "center"
+            },
+            "_typography:mobile_portrait": {
+              "font-size": "var(--aptext-2-5xl)"
+            },
+            "_gradient": {
+              "angle": "92",
+              "applyTo": "text",
+              "colors": [
+                {
+                  "id": "mgwevi",
+                  "stop": "0",
+                  "color": {
+                    "id": "fyafaz",
+                    "raw": "var(--color-22)",
+                    "light": "hsl(144 50% 40%)"
+                  }
+                },
+                {
+                  "id": "nexioq",
+                  "stop": "100",
+                  "color": {
+                    "id": "mbnsnz",
+                    "raw": "var(--brightgreen)",
+                    "light": "#1BD365"
+                  }
+                }
+              ]
+            },
+            "_attributes": [
+              {
+                "id": "sgeyix",
+                "name": "data-highlight",
+                "value": "last-1"
+              }
+            ]
+          },
+          "label": "Header"
+        },
+        {
+          "id": "mfpara",
+          "name": "text-basic",
+          "parent": "mffrmb",
+          "children": [],
+          "settings": {
+            "tag": "p",
+            "text": "Bli uppringd av vår behöriga elektriker som konsulterar dig från start till mål.",
+            "_typography": {
+              "font-size": "var(--aptext-m)",
+              "font-weight": "350",
+              "line-height": "1.4",
+              "text-align": "center"
+            },
+            "_margin": {
+              "top": "10",
+              "bottom": "25"
+            },
+            "_widthMax": "56rem",
+            "_alignSelf": "center"
+          }
+        },
+        {
+          "id": "mffrm2",
+          "name": "form",
+          "parent": "mffrmb",
+          "children": [],
+          "settings": {
+            "fullAccessDisable": [
+              "submitButtonIcon",
+              "requiredAsterisk"
+            ],
+            "fields": [
+              {
+                "type": "text",
+                "label": "Förnamn",
+                "id": "fornmn",
+                "required": true,
+                "width": "49",
+                "width:mobile_portrait": "100",
+                "name": "forenamn"
+              },
+              {
+                "type": "text",
+                "label": "Efternamn",
+                "id": "efternm",
+                "required": true,
+                "width": "49",
+                "width:mobile_portrait": "100",
+                "name": "efternamn"
+              },
+              {
+                "type": "email",
+                "label": "E-post",
+                "id": "emailf",
+                "required": true,
+                "width": "49",
+                "width:mobile_portrait": "100",
+                "name": "email"
+              },
+              {
+                "type": "tel",
+                "label": "Telefonnummer",
+                "id": "telefn",
+                "required": true,
+                "width": "49",
+                "width:mobile_portrait": "100",
+                "name": "telefon"
+              },
+              {
+                "type": "text",
+                "label": "Adress",
+                "id": "adrssf",
+                "required": true,
+                "width": "100",
+                "placeholder": "Sök efter din adress",
+                "name": "adress"
+              },
+              {
+                "type": "textarea",
+                "label": "Meddelande",
+                "id": "meddel",
+                "width": "100",
+                "placeholder": "Valfritt meddelande",
+                "name": "meddelande"
+              },
+              {
+                "type": "hidden",
+                "label": "form_type",
+                "id": "ftype",
+                "value": "Kontakt",
+                "name": "form_type"
+              }
+            ],
+            "actions": [
+              "webhook",
+              "save-submission"
+            ],
+            "emailSubject": "Kontaktförfrågan",
+            "emailTo": "admin_email",
+            "fromName": "Ampy",
+            "emailErrorMessage": "Något gick fel. Ladda om sidan och försök igen.",
+            "htmlEmail": true,
+            "submitButtonText": "Gratis rådgivning",
+            "horizontalAlignFields": "space-between",
+            "showLabels": true,
+            "requiredAsterisk": true,
+            "placeholderTypography": {
+              "font-family": "Outfit",
+              "text-transform": "none"
+            },
+            "labelTypography": {
+              "font-family": "Outfit",
+              "text-transform": "none",
+              "font-size": "var(--aptext-sm)",
+              "font-weight": "500"
+            },
+            "fieldBackgroundColor": {
+              "hex": "#f7f7f7"
+            },
+            "fieldBorder": {
+              "style": "none",
+              "radius": {
+                "top": "8",
+                "right": "8",
+                "bottom": "8",
+                "left": "8"
+              }
+            },
+            "submitButtonTypography": {
+              "font-size": "var(--aptext-m)",
+              "font-weight": "500"
+            },
+            "submitButtonBorder": {
+              "style": "none",
+              "radius": {
+                "top": "999px",
+                "right": "999px",
+                "bottom": "999px",
+                "left": "999px"
+              }
+            },
+            "submitButtonBackgroundColor": {
+              "hex": "#00a991"
+            },
+            "fieldMargin": {
+              "bottom": "10"
+            },
+            "submitButtonSize": "xl",
+            "submitButtonWidth": "100",
+            "fieldPadding": {
+              "top": "var(--apspace-4xs)",
+              "bottom": "var(--apspace-4xs)"
+            },
+            "submitButtonMargin": {
+              "top": "var(--apspace-s)"
+            },
+            "successMessage": "Tack – vi har fått din förfrågan. En elektriker hör av sig och går igenom ditt behov.",
+            "webhooks": [
+              {
+                "id": "bnhhrm",
+                "url": "https://n8nflows.ampy.se/webhook/Kontakt",
+                "name": "N8n",
+                "contentType": "json"
+              }
+            ]
+          },
+          "label": "Form",
+          "themeStyles": []
+        },
+        {
+          "id": "mfcons",
+          "name": "text",
+          "parent": "mffrmb",
+          "children": [],
+          "settings": {
+            "text": "<p>Genom att skicka in godkänner du att Ampy kontaktar dig enligt vår <span class=\"underlinelight\"><a href=\"https://ampy.se/integritetspolicy/\">integritetspolicy</a>.</span></p>",
+            "_typography": {
+              "font-size": "var(--aptext-xs)",
+              "text-align": "center",
+              "line-height": "1.5",
+              "color": {
+                "raw": "#6a6a6a"
+              }
+            },
+            "_margin": {
+              "top": "var(--apspace-2xs)"
+            },
+            "_alignSelf": "center"
+          }
+        },
+        {
+          "id": "mfcode",
+          "name": "code",
+          "parent": "mffrmb",
+          "children": [],
+          "settings": {
+            "executeCode": true,
+            "code": "<style>/* Ampy main-form — scoped extras. Canonical: ampy-redesign/css/styles.css */\n[data-mf=\"card\"]{position:relative;overflow:hidden;}\n[data-mf=\"photo\"]{position:relative;}\n[data-mf=\"photo\"] *{color:#fff;}\n[data-mf=\"logo\"]{position:absolute;top:2.9rem;left:2.9rem;z-index:5;max-width:130px;}\n[data-mf=\"quote\"]{text-shadow:0 2px 16px rgba(0,0,0,.35);max-width:34ch;margin-inline:auto;}\n[data-mf=\"stars\"] .brxe-icon,[data-mf=\"stars\"] svg,[data-mf=\"stars\"] i{color:#ffc24b !important;filter:drop-shadow(0 1px 2px rgba(0,0,0,.4));}\n[data-mf=\"rating\"]{text-decoration:none;}\n[data-mf=\"rating\"]:hover{text-decoration:underline;}\n[data-mf=\"vol\"] strong{font-weight:600;}\n[data-mf=\"steps\"] svg,[data-mf=\"steps\"] .brxe-icon,[data-mf=\"steps\"] i{color:#fff;filter:drop-shadow(0 1px 3px rgba(0,0,0,.4));}\n/* submit → Ampy teal gradient + pill (Bricks solid colour can't hold a gradient) */\n[data-mf=\"formpane\"] .brxe-form button[type=\"submit\"],[data-mf=\"formpane\"] .bricks-button{\n  background:linear-gradient(100deg,#009e88 0%,#00b597 52%,#17c6a0 100%) !important;\n  border-radius:999px !important;box-shadow:0 1rem 2.4rem -.8rem rgba(0,169,145,.45);\n  transition:transform .2s cubic-bezier(.2,.6,.2,1),filter .2s;\n}\n[data-mf=\"formpane\"] .brxe-form button[type=\"submit\"]:hover{filter:brightness(1.06);transform:translateY(-1px);}\n/* address autocomplete dropdown injected by the engine below */\n.mf-ac-list{position:absolute;z-index:40;left:0;right:0;top:calc(100% + .6rem);background:#fff;border:1px solid rgba(15,18,60,.1);border-radius:8px;box-shadow:0 2rem 4rem -1rem rgba(15,18,60,.2);overflow:hidden;max-height:26rem;overflow-y:auto;display:none;}\n.mf-ac-list.show{display:block;}\n.mf-ac-opt{display:flex;gap:1rem;align-items:center;width:100%;text-align:left;padding:1.1rem 1.4rem;font-size:1.5rem;color:#171717;background:none;border:0;border-bottom:1px solid rgba(15,18,60,.08);cursor:pointer;font-family:inherit;}\n.mf-ac-opt:last-child{border-bottom:0;}\n.mf-ac-opt:hover,.mf-ac-opt.active{background:#f7f7f7;}\n.mf-ac-opt mark{background:none;color:#00a991;font-weight:600;}\n.mf-ac-opt small{color:#6a6a6a;}\n.mf-ac-note{padding:1.2rem 1.4rem;font-size:1.35rem;color:#6a6a6a;}\n.mf-ac-anchor{position:relative;}\n.brxe-form .mf-invalid input,.brxe-form input.mf-invalid{border-color:#e00000 !important;}\n/* ============ MOBILE: full-bleed photo + floating form card (Svea mechanism) === */\n@media (max-width:768px){\n  [data-mf=\"card\"]{border-radius:0 !important;}\n  [data-mf=\"photo\"]{position:absolute !important;inset:0;z-index:0;}\n  [data-mf=\"steps\"]{position:relative;z-index:2;}\n  [data-mf=\"formpane\"]{position:relative;z-index:2;margin:2.4rem 1.6rem;border-radius:15px !important;}\n  [data-mf=\"logo\"]{display:none;}\n}</style>\n<script>/* Ampy main-form engine — enhancement layer over the native Bricks form.\n   Canonical: ampy-redesign/js/app.js. Submit + webhook = native Bricks form. */\n(function(){\n  \"use strict\";\n  var root=document.querySelector('[data-mf=\"card\"]'); if(!root) return;\n  var form=root.querySelector('.brxe-form,form'); if(!form) return;\n  function esc(s){return String(s==null?\"\":s).replace(/[&<>\"']/g,function(c){return {\"&\":\"&amp;\",\"<\":\"&lt;\",\">\":\"&gt;\",'\"':\"&quot;\",\"'\":\"&#39;\"}[c];});}\n  /* Locate inputs by the Bricks name pattern form-field-<id> we set in the JSON.\n     [GAP] verify these ids survived paste (README §selectors). */\n  function byField(id){return form.querySelector('[name=\"form-field-'+id+'\"]')||form.querySelector('#form-field-'+id);}\n  var addr=byField(\"adrssf\");\n  /* ---- forgiving validation on the visible required inputs ---- */\n  function markInvalid(el,bad){ if(!el) return; el.classList.toggle(\"mf-invalid\",!!bad); el.setAttribute(\"aria-invalid\",bad?\"true\":\"false\"); }\n  var email=byField(\"emailf\"), tel=byField(\"telefn\"), fn=byField(\"fornmn\"), ln=byField(\"efternm\");\n  function vName(el){return el&&el.value.trim().length>=2;}\n  function vEmail(){return email&&/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email.value.trim());}\n  function vPhone(){return tel&&/^\\+?\\d{7,15}$/.test(tel.value.trim().replace(/[\\s\\-()]/g,\"\"));}\n  [[fn,function(){return vName(fn);}],[ln,function(){return vName(ln);}],[email,vEmail],[tel,vPhone]].forEach(function(p){\n    if(!p[0])return;\n    p[0].addEventListener(\"blur\",function(){ if(p[0].value.trim()===\"\"){markInvalid(p[0],false&&false);p[0].classList.remove(\"mf-invalid\");return;} markInvalid(p[0],!p[1]()); });\n    p[0].addEventListener(\"input\",function(){ if(p[0].classList.contains(\"mf-invalid\")&&p[1]()) markInvalid(p[0],false); });\n  });\n  /* ---- address autocomplete (Photon — free, whole of Sweden, no key) ---- */\n  if(addr){\n    var wrap=document.createElement(\"div\"); wrap.className=\"mf-ac-anchor\";\n    addr.parentNode.insertBefore(wrap,addr); wrap.appendChild(addr);\n    var list=document.createElement(\"div\"); list.className=\"mf-ac-list\"; list.setAttribute(\"role\",\"listbox\"); wrap.appendChild(list);\n    addr.setAttribute(\"role\",\"combobox\"); addr.setAttribute(\"aria-autocomplete\",\"list\"); addr.setAttribute(\"aria-expanded\",\"false\"); addr.setAttribute(\"autocomplete\",\"off\");\n    var PHOTON=\"https://photon.komoot.io/api/\", seq=0, ctrl=null, deb, cur=[], act=-1;\n    function hl(t,q){var i=t.toLowerCase().indexOf(q.toLowerCase());return (i<0||q.length<2)?esc(t):esc(t.slice(0,i))+\"<mark>\"+esc(t.slice(i,i+q.length))+\"</mark>\"+esc(t.slice(i+q.length));}\n    function close(){list.classList.remove(\"show\");addr.setAttribute(\"aria-expanded\",\"false\");act=-1;}\n    function fetchA(q,cb){q=q.trim(); if(q.length<3){cb([],\"idle\");return;} var my=++seq; if(ctrl)ctrl.abort(); ctrl=(\"AbortController\"in window)?new AbortController():null;\n      fetch(PHOTON+\"?q=\"+encodeURIComponent(q)+\"&limit=8&lat=59.33&lon=18.06\",ctrl?{signal:ctrl.signal}:undefined)\n      .then(function(r){return r.json();}).then(function(d){ if(my!==seq)return; var seen={};\n        var items=(d.features||[]).map(function(f){var p=f.properties||{};var st=p.street?(p.street+(p.housenumber?\" \"+p.housenumber:\"\")):(p.name||\"\");return{s:st,z:p.postcode||\"\",c:p.city||p.town||p.village||p.municipality||\"\",cc:p.countrycode};})\n        .filter(function(a){if(!a.s||a.cc!==\"SE\")return false;var k=a.s+a.z+a.c;if(seen[k])return false;seen[k]=1;return true;});\n        cb(items,items.length?\"ok\":\"empty\");\n      }).catch(function(e){ if(my!==seq)return; cb([],(e&&e.name===\"AbortError\")?\"abort\":\"error\"); });\n    }\n    function render(items,state,q){cur=items;act=-1;\n      if(!items.length){ if(state===\"error\"||state===\"abort\"){list.innerHTML='<div class=\"mf-ac-note\">Adressökningen svarar inte just nu &ndash; skriv adressen manuellt.</div>';list.classList.add(\"show\");addr.setAttribute(\"aria-expanded\",\"true\");}\n        else if(state===\"empty\"){list.innerHTML='<div class=\"mf-ac-note\">Inga träffar &ndash; kontrollera stavningen.</div>';list.classList.add(\"show\");addr.setAttribute(\"aria-expanded\",\"true\");} else close(); return; }\n      list.innerHTML=items.map(function(a,n){return '<button type=\"button\" class=\"mf-ac-opt\" role=\"option\" data-i=\"'+n+'\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#00a991\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/></svg><span>'+hl(a.s,q)+' <small>'+esc(a.z)+' '+esc(a.c)+'</small></span></button>';}).join(\"\");\n      list.classList.add(\"show\"); addr.setAttribute(\"aria-expanded\",\"true\");\n    }\n    function setActive(n){act=n;var o=list.querySelectorAll(\".mf-ac-opt\");o.forEach(function(el,k){el.classList.toggle(\"active\",k===n);el.setAttribute(\"aria-selected\",k===n?\"true\":\"false\");});}\n    function pick(a){addr.value=a.s+\", \"+a.z+\" \"+a.c;markInvalid(addr,false);close();}\n    addr.addEventListener(\"input\",function(){clearTimeout(deb);var q=addr.value;deb=setTimeout(function(){fetchA(q,function(it,st){render(it,st,q);});},250);});\n    addr.addEventListener(\"blur\",function(){setTimeout(close,150);});\n    addr.addEventListener(\"keydown\",function(e){ if(!list.classList.contains(\"show\"))return; var o=list.querySelectorAll(\".mf-ac-opt\");\n      if(e.key===\"ArrowDown\"){e.preventDefault();if(o.length)setActive(Math.min(act+1,o.length-1));}\n      else if(e.key===\"ArrowUp\"){e.preventDefault();if(o.length)setActive(Math.max(act-1,0));}\n      else if(e.key===\"Enter\"){if(act>-1&&cur[act]){e.preventDefault();pick(cur[act]);}}\n      else if(e.key===\"Escape\"){close();} });\n    list.addEventListener(\"mousedown\",function(e){var b=e.target.closest(\".mf-ac-opt\");if(b){e.preventDefault();pick(cur[+b.dataset.i]);}});\n  }\n})();</script>"
+          },
+          "label": "Engine (JS + scoped CSS)"
+        }
+      ],
+      "properties": [],
+      "_created": 1784000000,
+      "_user_id": 13,
+      "_version": "2.1.4"
+    }
+  ]
+}

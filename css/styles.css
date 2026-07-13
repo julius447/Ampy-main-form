@@ -132,8 +132,13 @@ body {
   font-weight: var(--w-med); line-height: 1.35; color: var(--ink-head);
 }
 .mf-head__h .grad {                              /* soft Ampy gradient on the last word */
+  color: #12b09a;                                /* solid-teal fallback: stays visible if clip unsupported */
   background: linear-gradient(92deg, #12b09a 0%, #33c48c 58%, #55d199 100%);
-  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .mf-head__h .grad {
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
 }
 .mf-head__p {                                    /* Svea: 16-18px / 200 / #4d4d4d / lh 1.27 */
   margin: 0; font-size: clamp(1.6rem, 1.5rem + 0.3vw, 1.8rem);

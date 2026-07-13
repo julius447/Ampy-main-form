@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ampy Kontaktformulär — leveransförhandsvisning (FluentSnippets dist)</title>
+
+<!-- ============================================================= -->
+<!-- THE SHIPPING STYLESHEET, referenced 1:1 (no copy, no edits).   -->
+<!-- This is the exact file Chris pastes into the CSS snippet.      -->
+<!-- ============================================================= -->
+<link rel="stylesheet" href="../fluentsnippets/styles.css">
+
+<!-- Preview-only @font-face: the shipping styles.css points Outfit at
+     /wp-content/uploads/ampy-fonts/… (correct on WordPress, 404 here).
+     This overlay re-declares the SAME family from the staged woff2 by a
+     relative path so the preview renders in real Outfit. It ships with
+     nothing — it exists only so this static page looks like production. -->
+<style>
+  @font-face{
+    font-family:"Outfit"; font-style:normal; font-weight:200 800; font-display:swap;
+    src:url("../fluentsnippets/fonts/Outfit-latin.woff2") format("woff2");
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+  }
+  @font-face{
+    font-family:"Outfit"; font-style:normal; font-weight:200 800; font-display:swap;
+    src:url("../fluentsnippets/fonts/Outfit-latin-ext.woff2") format("woff2");
+    unicode-range:U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;
+  }
+  /* Neutral page frame so the wrapper's own styling is what you judge. */
+  html,body{margin:0;background:#eef1f5;}
+  .preview-note{
+    font-family:"Outfit",system-ui,sans-serif; max-width:1220px; margin:24px auto 0;
+    padding:12px 16px; border-radius:10px; background:#fff; color:#3a3f4a;
+    font-size:13px; line-height:1.5; box-shadow:0 1px 3px rgba(9,11,50,.08);
+  }
+  .preview-note strong{color:#090b32;}
+</style>
+</head>
+<body>
+
+<p class="preview-note">
+  <strong>Förhandsvisning av leveransfilerna</strong> — denna sida drar in
+  <code>../fluentsnippets/styles.css</code> och <code>../fluentsnippets/engine.js</code>
+  exakt som de skickas till WordPress. Allt fungerar (validering, adress­sökning, mobil-layout)
+  utom <em>skarp inskickning</em>, som kräver den riktiga REST-endpointen — här visas i stället
+  formulärets felläge om man trycker skicka. Ingen design är ändrad.
+</p>
+
+<!-- ============================================================= -->
+<!-- SHORTCODE OUTPUT, resolved to static (no WordPress).           -->
+<!--   $photo  → ../../assets/form-photo.jpg                        -->
+<!--   $logo   → ../../assets/ampy-logo-white.png                   -->
+<!--   $google → '' (no profile URL) → non-link .mf-photo__rating   -->
+<!-- Byte-for-byte identical structure to backend.php's markup.     -->
+<!-- ============================================================= -->
+<div class="ampy-mf-outer">
+<div class="ampy-mf" id="ampyMf" data-nonce="preview" data-booted="0">
+
+<section class="mf-section">
+  <div class="mf-card" role="region" aria-label="Kontakta Ampy för kostnadsfri rådgivning">
+
+    <!-- Full-bleed photo background (Ampy's own) — behind everything. -->
+    <img class="mf-cardbg" src="../../assets/form-photo.jpg" alt="" aria-hidden="true">
+    <span class="mf-cardov" aria-hidden="true"></span>
+
+    <!-- LEFT (desktop) / TOP content (mobile) — transparent, over the photo -->
+    <aside class="mf-photo">
+      <div class="mf-photo__logo">
+        <img class="mf-photo__logoimg" src="../../assets/ampy-logo-white.png" alt="Ampy">
+      </div>
+
+      <!-- Info block — centered in the upper region (testimonial the focus) -->
+      <div class="mf-photo__body">
+        <blockquote class="mf-photo__quote">&rdquo;Från start till mål levererades en service i världsklass.&rdquo;</blockquote>
+
+        <div class="mf-photo__rating" aria-label="Ampys betyg på Google: 5 av 5">
+          <span class="mf-photo__stars" role="img" aria-label="5 av 5 stjärnor">
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.79L10 14.77 4.8 17.5l.99-5.79L1.58 7.62l5.82-.85z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.79L10 14.77 4.8 17.5l.99-5.79L1.58 7.62l5.82-.85z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.79L10 14.77 4.8 17.5l.99-5.79L1.58 7.62l5.82-.85z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.79L10 14.77 4.8 17.5l.99-5.79L1.58 7.62l5.82-.85z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.27 5.82.85-4.21 4.1.99 5.79L10 14.77 4.8 17.5l.99-5.79L1.58 7.62l5.82-.85z"/></svg>
+          </span>
+          <span class="mf-photo__rating-txt"><strong>5 av 5</strong> &middot; Betyg på Google</span>
+        </div>
+
+        <p class="mf-photo__vol"><strong>3&nbsp;000+</strong> genomförda installationer om året</p>
+      </div>
+
+      <!-- "Vad händer sen" — 3 steps, pinned near the bottom (desktop only) -->
+      <ul class="mf-photo__steps mf-photo__steps--desktop">
+        <li class="mf-photo__step">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3 11 14"/><path d="M22 3l-7 19-4-8-8-4z"/></svg>
+          <span>Skicka in dina<br>uppgifter</span>
+        </li>
+        <li class="mf-photo__step">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+          <span>Vi ringer dig inom 24<br>timmar</span>
+        </li>
+        <li class="mf-photo__step">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          <span>Kostnadsfri rådgivning<br>av elektriker</span>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- ============================================================= -->
+    <!-- RIGHT — the form pane (white)                                 -->
+    <!-- ============================================================= -->
+    <div class="mf-form-pane">
+      <header class="mf-head">
+        <h2 class="mf-head__h">Få en kostnadsfri <span class="grad">rådgivning</span></h2>
+        <p class="mf-head__p">Bli uppringd av vår behöriga elektriker som konsulterar dig <br class="mf-br-desk">från start till mål.</p>
+      </header>
+
+      <form class="mf-form" id="mfForm" novalidate>
+        <input type="hidden" name="form_type" value="Kontakt">
+        <input type="hidden" name="_ampy_mf_nonce" value="preview">
+        <div class="mf-hp-wrap" aria-hidden="true">
+          <label>Lämna tomt<input id="mf_hp" name="company_url" type="text" tabindex="-1" autocomplete="off"></label>
+        </div>
+
+        <div class="mf-field mf-field--half" data-validate="forenamn">
+          <label class="mf-label" for="mf_forenamn">Förnamn <span class="mf-req">*</span></label>
+          <input class="mf-input" id="mf_forenamn" name="forenamn" type="text" autocomplete="given-name" required>
+          <span class="mf-feedback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 8v5"/><path d="M12 16h.01"/></svg><span>Fyll i ditt förnamn.</span></span>
+        </div>
+        <div class="mf-field mf-field--half" data-validate="efternamn">
+          <label class="mf-label" for="mf_efternamn">Efternamn <span class="mf-req">*</span></label>
+          <input class="mf-input" id="mf_efternamn" name="efternamn" type="text" autocomplete="family-name" required>
+          <span class="mf-feedback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 8v5"/><path d="M12 16h.01"/></svg><span>Fyll i ditt efternamn.</span></span>
+        </div>
+
+        <div class="mf-field mf-field--half" data-validate="email">
+          <label class="mf-label" for="mf_email">E-post <span class="mf-req">*</span></label>
+          <input class="mf-input" id="mf_email" name="email" type="email" autocomplete="email" required>
+          <span class="mf-feedback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 8v5"/><path d="M12 16h.01"/></svg><span>Dubbelkolla e-postadressen &ndash; något ser fel ut.</span></span>
+        </div>
+        <div class="mf-field mf-field--half" data-validate="phone">
+          <label class="mf-label" for="mf_telefon">Telefonnummer <span class="mf-req">*</span></label>
+          <input class="mf-input" id="mf_telefon" name="telefon" type="tel" autocomplete="tel" required>
+          <span class="mf-feedback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 8v5"/><path d="M12 16h.01"/></svg><span>Vi behöver ett nummer att ringa dig på.</span></span>
+        </div>
+
+        <div class="mf-field mf-field--full mf-addr" data-validate="address">
+          <div class="mf-addr__label-row">
+            <label class="mf-label" for="mf_adress_sok">Adress <span class="mf-req">*</span></label>
+            <button type="button" class="mf-addr__manual" id="mfAddrManual" aria-expanded="false" aria-controls="mfManualFields">Ange adress manuellt</button>
+          </div>
+          <div class="mf-addr__input-wrap">
+            <svg class="mf-addr-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <input class="mf-input" id="mf_adress_sok" name="adress_sok" type="text" placeholder="Sök efter din adress" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="mfAddrList">
+            <div class="mf-addr__list" id="mfAddrList" role="listbox" aria-label="Adressförslag"></div>
+          </div>
+          <span class="mf-feedback"><span>Fyll i din adress.</span></span>
+        </div>
+
+        <div class="mf-manual-fields" id="mfManualFields">
+          <div class="mf-field" style="grid-column: 1 / -1;">
+            <label class="mf-label" for="mf_adress">Gatuadress</label>
+            <input class="mf-input" id="mf_adress" name="adress" type="text" autocomplete="street-address">
+          </div>
+          <div class="mf-field">
+            <label class="mf-label" for="mf_postnummer">Postnummer</label>
+            <input class="mf-input" id="mf_postnummer" name="postnummer" type="text" inputmode="numeric" autocomplete="postal-code">
+          </div>
+          <div class="mf-field">
+            <label class="mf-label" for="mf_ort">Stad</label>
+            <input class="mf-input" id="mf_ort" name="ort" type="text" autocomplete="address-level2">
+          </div>
+        </div>
+
+        <div class="mf-field mf-field--full">
+          <label class="mf-label" for="mf_meddelande">Meddelande</label>
+          <textarea class="mf-textarea" id="mf_meddelande" name="meddelande" placeholder="Valfritt meddelande"></textarea>
+        </div>
+
+        <div class="mf-actions">
+          <button type="submit" class="mf-submit" id="mfSubmit">
+            <span class="mf-submit__spin" aria-hidden="true"></span>
+            <span class="mf-submit__label">Gratis rådgivning</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </button>
+        </div>
+
+        <p class="mf-error" id="mfError" role="alert" tabindex="-1">
+          Något gick fel när formuläret skulle skickas. Försök igen, eller ring oss på <strong>010&ndash;265 79 79</strong>.
+        </p>
+
+        <p class="mf-consent">
+          Genom att skicka in godkänner du att Ampy kontaktar dig enligt vår
+          <a href="/integritetspolicy/">integritetspolicy</a>.
+        </p>
+      </form>
+
+      <div class="mf-success" id="mfSuccess" role="status" aria-live="polite" tabindex="-1">
+        <div class="mf-success__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <h3 class="mf-success__h">Tack &ndash; vi har fått din förfrågan</h3>
+        <p class="mf-success__p">En elektriker hör av sig och går igenom ditt behov. Ingen kostnad, inget köpkrav.</p>
+        <span class="mf-success__meta">Vill du prata direkt? Ring <strong>010&ndash;265 79 79</strong>.</span>
+      </div>
+    </div>
+
+    <!-- Mobile-only: volume proof under the form, then the 3 steps (over the photo) -->
+    <p class="mf-vol--mobile"><strong>3&nbsp;000+</strong> genomförda installationer om året</p>
+    <ul class="mf-photo__steps mf-photo__steps--mobile">
+      <li class="mf-photo__step">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3 11 14"/><path d="M22 3l-7 19-4-8-8-4z"/></svg>
+        <span>Skicka in dina uppgifter</span>
+      </li>
+      <li class="mf-photo__step">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+        <span>Vi ringer dig inom 24 timmar</span>
+      </li>
+      <li class="mf-photo__step">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <span>Kostnadsfri rådgivning av elektriker</span>
+      </li>
+    </ul>
+
+  </div>
+</section>
+
+</div><!-- .ampy-mf -->
+</div><!-- .ampy-mf-outer -->
+
+<!-- Stub the WP-injected globals so engine.js boots exactly as on WordPress.
+     endpoint is empty here → a real submit lands in the form's error state
+     (honest: no phantom success without a delivered lead). -->
+<script>window.AMPY_MF = { endpoint: "", nonce: "preview" };</script>
+
+<!-- THE SHIPPING ENGINE, referenced 1:1 (no copy, no edits). -->
+<script src="../fluentsnippets/engine.js"></script>
+</body>
+</html>
